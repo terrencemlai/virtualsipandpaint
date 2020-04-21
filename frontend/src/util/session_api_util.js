@@ -12,6 +12,7 @@ export const signup = (userData) => {
   return axios.post('/api/users/register', userData);
 };
 
-export const login = (userData) => {
+export const login = (userData) => { //email & password
+  debugger
   return axios.post('api/users/login', userData);
 };
