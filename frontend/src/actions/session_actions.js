@@ -29,13 +29,25 @@ export const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT,
 });
 
+// export const signup = user => (dispatch) => (
+// APIUtil.signup(user).then(res => {
+//     const { token } = res.data;
+//     localStorage.setItem('jwtToken', token);
+//     APIUtil.setAuthToken(token);
+//     const decoded = jwt_decode(token);
+//     dispatch(receiveCurrentUser(decoded));
+//   })
+//   .catch(err => {
+//     dispatch(receiveErrors(err));
+//   })
+// );
 export const signup = (user) => (dispatch) =>
-  APIUtil.signup(user)
-  .then(() => dispatch(receiveUserSignIn()),
+  APIUtil.signup(user).then(
+    () => dispatch(receiveUserSignIn()),
     (err) => dispatch(receiveErrors(err.response.data))
-);
+  );
 
-export const login = (user) = dispatch => (
+export const login = user => dispatch => (
   APIUtil.login(user).then(res => {
     const { token } = res.data;
     localStorage.setItem('jwtToken', token);
@@ -44,7 +56,7 @@ export const login = (user) = dispatch => (
     dispatch(receiveCurrentUser(decoded));
   })
   .catch(err => {
-    dispatch(receiveErrors(err.response.data));
+    dispatch(receiveErrors(err));
   })
 );
 

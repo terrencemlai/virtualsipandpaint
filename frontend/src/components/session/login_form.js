@@ -22,6 +22,17 @@ class LoginForm extends React.Component {
         [type]: e.currentTarget.value,
       });
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentUser === true) {
+      this.props.history.push('/home');
+    }
+
+    this.setState({errors: nextProps.errors});
+  }
+
+  // componentDidMount() {
+
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -31,8 +42,8 @@ class LoginForm extends React.Component {
       password: this.state.password,
     };
 
-    this.props.login(user)
-      .then(() => this.props.history.push("/home"));
+    this.props.login(user);
+      // .then(() => this.props.history.push("/home"));
   }
 
   renderErrors() {
@@ -69,8 +80,7 @@ class LoginForm extends React.Component {
             {this.renderErrors()}
           </div>
           <div className="redirect">
-            Don't have an account?
-            <p className="redirect-link">{this.props.navLink}</p>
+            Don't have an account? <p className="redirect-link">{this.props.navLink}</p>
           </div>
         </form>
       </div>

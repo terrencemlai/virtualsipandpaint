@@ -9,7 +9,7 @@ const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-router.get('/current/', passport.authenticate('jwt', { session: false}), (req,res) => {
+router.get('/current', passport.authenticate('jwt', { session: false}), (req,res) => {
   res.json({
     id: req.user.id,
     username: req.user.username,
@@ -87,7 +87,7 @@ router.post("/login", (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (!user) {
-        return res.status(404).json({ email: "This user doesn't exit" });
+        return res.status(404).json({ email: "This user doesn't exist" });
       }
 
       bcrypt.compare(password, user.password).then(isMatch => {
@@ -101,8 +101,11 @@ router.post("/login", (req, res) => {
           jwt.sign(
             payload,
             keys.secretOrKey,
-            { expires: 3600 },
+            { expiresIn: 3600 },
             (err, token) => {
+              // // console.log(token);
+              // // console.log(err);
+              // debugger
               res.json({
                 success: true,
                 token: "Bearer " + token
