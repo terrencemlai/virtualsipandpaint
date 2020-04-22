@@ -15,7 +15,6 @@ function makeid(length) {
 }
 
 router.post("/new", (req,res) => {
-  console.log(req);
   let room = new Room({
     host_id: req.body.userId,
     room_token: makeid(20)
@@ -23,7 +22,6 @@ router.post("/new", (req,res) => {
 
   room.save().then( () => {
     return res.json(room);
-    // return res.status(200).send("Here is the room!");
   })
 })
 
