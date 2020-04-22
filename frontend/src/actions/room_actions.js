@@ -20,11 +20,14 @@ export const receiveRoomErrors = errors => ({
 //   room
 // });
 
-export const joinRoom = roomToken => dispatch => (
-  fetchRoom(roomToken)
-  .then(res => dispatch(receiveRoom(res)))
-  .catch(err => dispatch(receiveRoomErrors(err.response.data)))
-);
+export const joinRoom = roomToken => dispatch => {
+  debugger
+  return(
+    fetchRoom(roomToken)
+      .then(res => dispatch(receiveRoom(res)))
+      .catch(err => dispatch(receiveRoomErrors(err.response.data)))
+  );
+};
 
 export const newRoom = (userId) => dispatch => (
   createRoom(userId)

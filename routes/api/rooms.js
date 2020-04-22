@@ -26,6 +26,8 @@ router.post("/new", (req,res) => {
 })
 
 router.get("/join", (req,res) => {
+  // const room_token = req.body.room_token;
+  console.log(req);
   Room.findOne({ room_token: req.body.room_token })
     .then(room => {
       if (room) {

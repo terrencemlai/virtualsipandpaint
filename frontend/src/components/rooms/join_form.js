@@ -8,7 +8,7 @@ class JoinForm extends React.Component {
       room_token: "",
       errors: {},
     };
-
+    this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
   }
@@ -22,6 +22,7 @@ class JoinForm extends React.Component {
   // }
 
   update(field) {
+    // debugger
     return (e) =>
       this.setState({
         [field]: e.currentTarget.value,
@@ -30,7 +31,10 @@ class JoinForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.joinRoom(this.state.room_token);
+    // debugger
+    console.log({room_token: this.state.room_token});
+    this.props.joinRoom({room_token: this.state.room_token})
+      .then(() => this.props.history.push(`/rooms/${this.props.room._id}`));
   }
 
   renderErrors() {

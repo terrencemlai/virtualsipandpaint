@@ -6,6 +6,7 @@ import JoinForm from "./join_form";
 
 const mapStateToProps = (state) => {
   return {
+    room: state.entities.room,
     errors: state.errors.room,
   };
 };
