@@ -17,10 +17,16 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 require("./passport/passport")(passport);
 
+<<<<<<< HEAD
 // app.get("/", (req, res) => {
 //   console.log(res);
 //   res.send("Welcome to Virtual Sip & Paint!");
 // });
+=======
+app.get("/", (req, res) => {
+  res.send("Welcome to Virtual Sip & Paint!");
+});
+>>>>>>> userAuth-backend
 
 app.use("/api/users", users);
 app.use("/api/rooms", rooms);
