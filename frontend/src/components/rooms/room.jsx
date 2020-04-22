@@ -18,10 +18,14 @@ class Room extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     const that = this;
     this.socket.on("startDrawing", function (data) {
       that.receiveStartDrawing(data.x, data.y);
     });
+
+    this.socket.emit("create", this.props.match.params.id)
+
 
     this.socket.on("draw", function (data) {
       that.receiveDraw(
@@ -32,6 +36,7 @@ class Room extends React.Component {
         data.lineCap
       );
     });
+
   }
 
   getContext() {
@@ -59,7 +64,7 @@ class Room extends React.Component {
     ctx.beginPath();
     ctx.moveTo(x, y);
 
-    this.socket.emit("startDrawing", {
+    this.socket.emit("startDrawing", (this.props.match.params.id), {
       x: x,
       y: y,
     });
@@ -77,7 +82,7 @@ class Room extends React.Component {
     ctx.lineWidth = this.state.lineWidth;
     ctx.lineCap = this.state.lineCap;
 
-    this.socket.emit("draw", {
+    this.socket.emit("draw", (this.props.match.params.id), {
       x: x,
       y: y,
       color: this.state.color,
@@ -99,13 +104,14 @@ class Room extends React.Component {
   }
 
   render() {
+    debugger
     return (
-      <div>
+      <div className="room-container">
         <section className="tool-options">
           <div id="red" onClick={() => this.changeColor("red")}></div>
           <div id="orange" onClick={() => this.changeColor("orange")}></div>
           <div id="yellow" onClick={() => this.changeColor("yellow")}></div>
-          <div id="green" onClick={() => this.changeColor("orange")}></div>
+          <div id="green" onClick={() => this.changeColor("green")}></div>
           <div id="blue" onClick={() => this.changeColor("blue")}></div>
           <div id="purple" onClick={() => this.changeColor("purple")}></div>
           <div id="black" onClick={() => this.changeColor("black")}></div>
