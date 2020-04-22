@@ -1,0 +1,146 @@
+canvas {
+    background-color: white;
+}
+
+.tool-options {
+    display: flex;
+    flex-direction: row;
+    height:100px;
+    width: 600%;
+    border: 1px solid lightgray;
+}
+
+#red {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+#red:hover {
+    cursor: pointer;
+}
+
+#yellow {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+#yellow:hover {
+    cursor: pointer;
+}
+
+#orange {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+#orange:hover {
+    cursor: pointer;
+}
+
+#green {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+#green:hover {
+    cursor: pointer;
+}
+
+#purple {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+#purple:hover {
+    cursor: pointer;
+}
+
+#black {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+#blue:hover {
+    cursor: pointer;
+}
+
+#blue {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+#black:hover {
+    cursor: pointer;
+}
+
+#white {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 1px dashed lightgray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#white:hover {
+    cursor: pointer;
+}
+
+#linewidth-5 {
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    color: black;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#linewidth-5:hover {
+        cursor: pointer;
+}
+
+#linewidth-10 {
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#linewidth-10:hover {
+   cursor: pointer;
+}
+
+canvas {
+    border: 1px solid black;
+}

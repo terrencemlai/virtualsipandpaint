@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import io from "socket.io-client";
-
+import "./room.css";
 
 class Room extends React.Component {
   constructor(props) {
@@ -103,8 +103,12 @@ class Room extends React.Component {
       <div>
         <section className="tool-options">
           <div id="red" onClick={() => this.changeColor("red")}></div>
-          <div id="black" onClick={() => this.changeColor("black")}></div>
+          <div id="orange" onClick={() => this.changeColor("orange")}></div>
+          <div id="yellow" onClick={() => this.changeColor("yellow")}></div>
+          <div id="green" onClick={() => this.changeColor("orange")}></div>
           <div id="blue" onClick={() => this.changeColor("blue")}></div>
+          <div id="purple" onClick={() => this.changeColor("purple")}></div>
+          <div id="black" onClick={() => this.changeColor("black")}></div>
           <div id="linewidth-5" onClick={() => this.changeLineWidth(5)}>
             5
           </div>

@@ -11,9 +11,10 @@ const path = require('path');
 
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
+// var io = require('socket.io')(server, 
+//   { origins: 'mydomain.com:* http://mydomain.com:* http://www.mydomain.com:*' });
 
-
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(passport.initialize());
@@ -26,6 +27,7 @@ require("./passport/passport")(passport);
 
 app.use("/api/users", users);
 app.use("/api/rooms", rooms);
+
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -65,7 +67,7 @@ io.on("connection", (socket) => {
 
 const port = process.env.PORT || 5000; 
 
-app.listen(port, () => {
+http.listen(port, () => {
   console.log(`Listening on port ${port}!`);
 });
 

@@ -8,7 +8,7 @@ import JoinFormContainer from './rooms/join_form_container';
 // import HomePage from './home/home_page';
 import HomePage from './home/home_page';
 // import SplashPage from './splash/splash';
-import Room from './rooms/room';
+import Room from './rooms/room.jsx';
 const App = () => (
   <>
     <NavBarContainer />
