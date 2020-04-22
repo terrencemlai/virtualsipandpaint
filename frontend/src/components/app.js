@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav_bar/nav_bar_container';
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/sign_up_form_container";
@@ -11,11 +11,12 @@ const App = () => (
     <NavBarContainer />
     <Switch>
       {/* <AuthRoute exact path="/splash" component={SplashPage} /> */}
-      <AuthRoute exact path="/join" component={JoinFormContainer}/>
+      <Route exact path="/join" component={JoinFormContainer}/>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/register" component={SignupFormContainer} />
 
       {/* <ProtectedRoute exact path="/home" component={HomePageContainer} /> */}
+      {/* <Route exact path="" component={RoomContainer}></Route> */}
     </Switch>
   </>
 );

@@ -5,7 +5,7 @@ class JoinForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      // username: "",
       room_token: "",
       errors: {},
     };
@@ -63,7 +63,7 @@ class JoinForm extends React.Component {
           <div className="join-form">
             <div className="form-title"><i className="fas fa-paint-brush"></i></div>
             {/* {this.renderErrors()} */}
-            <br />
+            {/* <br />
             <input
               className="form-input three"
               type="text"
@@ -71,9 +71,9 @@ class JoinForm extends React.Component {
               onChange={this.update("username")}
               placeholder="Username"
             />
-            <br />
+            <br /> */}
             <input
-              className="form-input two"
+              className="form-input four"
               type="text"
               value={this.state.room_token}
               onChange={this.update("room_token")}
