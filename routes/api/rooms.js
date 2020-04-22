@@ -15,13 +15,15 @@ function makeid(length) {
 }
 
 router.post("/new", (req,res) => {
+  console.log(req);
   let room = new Room({
     host_id: req.body.userId,
     room_token: makeid(20)
   })
 
   room.save().then( () => {
-    return res.status(200).send("Here is the room!");
+    return res.json(room);
+    // return res.status(200).send("Here is the room!");
   })
 })
 
@@ -29,7 +31,7 @@ router.get("/join", (req,res) => {
   Room.findOne({ room_token: req.body.room_token })
     .then(room => {
       if (room) {
-        return res.json(room)
+        return res.json(room);
       } else {
         return res.status(404).json({ notfound: "Room not found" })
       }

@@ -32,7 +32,7 @@ router.post("/register", (req, res) => {
   User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
-        return res.state(400).json({ email: "A user is already registered with that email" });
+        return res.status(400).json({ email: "A user is already registered with that email" });
       } else {
 
         const newUser = new User({

@@ -1,11 +1,12 @@
 // import React from 'react'; login, signup
 import { connect } from "react-redux";
 import { logout } from "../../actions/session_actions";
-import {newRoom} from "../../actions/room_actions";
+import {newRoom, joinRoom} from "../../actions/room_actions";
 
 import NavBar from "./nav_bar";
 
 const mapStateToProps = (state) => ({
+  room: state.entities.room,
   currentUser: state.session.user,
   loggedIn: state.session.isAuthenticated,
 });
@@ -13,6 +14,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
   newRoom: (userId) => dispatch(newRoom(userId)),
+  joinRoom: roomToken => dispatch(joinRoom(roomToken))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

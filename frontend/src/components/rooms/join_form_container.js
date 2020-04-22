@@ -1,20 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { login, signup } from "../../actions/session_actions";
+import { joinRoom } from "../../actions/room_actions";
 import JoinForm from "./join_form";
 
-// const mapStateToProps = (state) => {
-//   return {
-//     errors: state.errors.session,
-//     navLink: <Link to="/register">Sign Up</Link>,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    errors: state.errors.room,
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     login: (user) => dispatch(login(user)),
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    joinRoom: (roomToken) => dispatch(joinRoom(roomToken)),
+  };
+};
 
-export default connect(null, null)(JoinForm);
+export default connect(mapStateToProps, mapDispatchToProps)(JoinForm);
