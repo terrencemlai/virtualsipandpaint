@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 const passport = require('passport');
 const path = require('path');
 
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -17,16 +19,10 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 require("./passport/passport")(passport);
 
-<<<<<<< HEAD
 // app.get("/", (req, res) => {
 //   console.log(res);
 //   res.send("Welcome to Virtual Sip & Paint!");
 // });
-=======
-app.get("/", (req, res) => {
-  res.send("Welcome to Virtual Sip & Paint!");
-});
->>>>>>> userAuth-backend
 
 app.use("/api/users", users);
 app.use("/api/rooms", rooms);
@@ -40,8 +36,32 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-  })
+  });
 }
+
+io.on("connection", (socket) => {
+  console.log("Connected to Socket!" + socket.id);
+  // socket.emit("init", {});
+  socket.on("startDrawing", (data) => {
+    socket.broadcast.emit("startDrawing", data);
+  });
+
+  socket.on("draw", (data) => {
+    socket.broadcast.emit("draw", data);
+  });
+
+  //  a room is created with a name variable called "room"
+  // this when we create room
+  socket.on("create", (room) => {
+    console.log("create data " + room);
+    socket.join(room);
+  });
+  // this when others joins the room
+  socket.on("join", (room) => {
+    console.log("join data " + room);
+    socket.join(room);
+  });
+});
 
 const port = process.env.PORT || 5000; 
 

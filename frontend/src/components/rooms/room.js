@@ -100,8 +100,34 @@ class Room extends React.Component {
 
   render() {
     return (
-      <div className="room-container">
-
+      <div>
+        <section className="tool-options">
+          <div id="red" onClick={() => this.changeColor("red")}></div>
+          <div id="black" onClick={() => this.changeColor("black")}></div>
+          <div id="blue" onClick={() => this.changeColor("blue")}></div>
+          <div id="linewidth-5" onClick={() => this.changeLineWidth(5)}>
+            5
+          </div>
+          <div id="linewidth-10" onClick={() => this.changeLineWidth(10)}>
+            10
+          </div>
+          <div id="white" onClick={() => this.changeColor("white")}>
+            ERASE
+          </div>
+        </section>
+        <canvas
+          ref="canvas"
+          width="600px"
+          height="600px"
+          onMouseDown={(e) =>
+            this.startDrawing(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
+          }
+          onMouseUp={() => this.endDrawing()}
+          onMouseLeave={() => this.endDrawing()}
+          onMouseMove={(e) =>
+            this.draw(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
+          }
+        />
       </div>
     );
   }
