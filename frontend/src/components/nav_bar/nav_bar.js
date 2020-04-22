@@ -7,6 +7,7 @@ class NavBar extends React.Component {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.getNavLink = this.getNavLink.bind(this);
   }
 
   logoutUser(e) {
@@ -17,26 +18,59 @@ class NavBar extends React.Component {
   getLinks() {
    if (this.props.loggedIn) {
      return (
-      <div>
-        <div>Welcome {this.props.currentUser.username}</div>
-        <button onClick={this.logoutUser}>Log Out</button>
+      <div className="greeting-logout">
+        <div className='user-greet' >Welcome {this.props.currentUser.username}!</div>
+         <div className='join'>
+           <button className="join-room"><i className="fas fa-plus"></i> New Room</button>
+           <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i>  Join Room</Link>
+         </div>
+         <button className="logout" onClick={this.logoutUser}>Log Out</button>
       </div>
      );
    } else {
      return (
-       <div>
-         <Link to={"/register"}>Sign Up</Link>
-         <Link to={"/login"}>Log In</Link>
+       <div className="session-links">
+         <div className='right-divide'>
+           <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i> Join Room</Link>
+         </div>
+         <Link className="sign-up" to={"/register"}>
+           Sign Up
+         </Link>
+         <Link className="login" to={"/login"}>
+           Log In
+         </Link>
        </div>
      );
    }
   }
 
+  getNavLink(){
+    if (this.props.loggedIn) {
+      return(
+      <Link className='nav-link' to={"/home"}>
+        <h1 className='app-title'>Tipsy Painter <i className="fas fa-paint-brush"></i></h1>
+      </Link>
+      );
+      
+    } else {
+      return(
+      <Link className='nav-link' to={"/splash"}>
+        <h1 className='app-title'>Tipsy Painter <i className="fas fa-paint-brush"></i></h1>
+      </Link>
+      );
+    }
+  }
+
   render() {
     return (
-      <div>
-        <h1>Virtual Sip and Paint</h1>
-        {this.getLinks()}
+      <div className='nav-bar'> 
+        <div className='nav-beauty'>
+          {/* <Link className='nav-link' to={"/splash"}>
+            <h1 className='app-title'>Tipsy Painter <i className="fas fa-paint-brush"></i></h1>
+          </Link> */}
+          {this.getNavLink()}
+          {this.getLinks()}
+        </div>
       </div>
     );
   }

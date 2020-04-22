@@ -52,9 +52,9 @@ class SignupForm extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
+      <ul className="error-ul">
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
+          <li className="error-li" key={`error-${i}`}>{this.state.errors[error]}</li>
         ))}
       </ul>
     );
@@ -62,11 +62,14 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form-container">
+      <div className="form-container">
         <form onSubmit={this.handleSubmit}>
-          <div className="login-form">
+          <div className="signup-form">
+            <div className="form-title"><i className="fas fa-paint-brush"></i></div>
+            {this.renderErrors()}
             <br />
             <input
+              className="form-input one"
               type="text"
               value={this.state.email}
               onChange={this.update("email")}
@@ -74,6 +77,7 @@ class SignupForm extends React.Component {
             />
             <br />
             <input
+              className="form-input two"
               type="text"
               value={this.state.handle}
               onChange={this.update("username")}
@@ -81,6 +85,7 @@ class SignupForm extends React.Component {
             />
             <br />
             <input
+              className="form-input three"
               type="password"
               value={this.state.password}
               onChange={this.update("password")}
@@ -88,14 +93,18 @@ class SignupForm extends React.Component {
             />
             <br />
             <input
+              className="form-input four"
               type="password"
               value={this.state.password2}
               onChange={this.update("password2")}
               placeholder="Confirm Password"
             />
             <br />
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+            <input className="form-button" type="submit" value="Sign Up" />
+            <div className="redirect">
+              Already signed up?
+              <p className="redirect-link">{this.props.navLink}</p>
+            </div>
           </div>
         </form>
       </div>
