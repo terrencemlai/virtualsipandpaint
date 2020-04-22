@@ -5,7 +5,10 @@ import NavBarContainer from './nav_bar/nav_bar_container';
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/sign_up_form_container";
 import JoinFormContainer from './rooms/join_form_container';
+// import HomePage from './home/home_page';
+import HomePage from './home/home_page';
 // import SplashPage from './splash/splash';
+import Room from './rooms/room';
 const App = () => (
   <>
     <NavBarContainer />
@@ -15,8 +18,8 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/register" component={SignupFormContainer} />
 
-      {/* <ProtectedRoute exact path="/home" component={HomePageContainer} /> */}
-      {/* <Route exact path="" component={RoomContainer}></Route> */}
+      <ProtectedRoute exact path="/home" component={HomePage} />
+      <Route exact path="/room" component={Room}/>
     </Switch>
   </>
 );
