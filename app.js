@@ -20,7 +20,6 @@ app.use(passport.initialize());
 require("./passport/passport")(passport);
 
 app.get("/", (req, res) => {
-  console.log(res);
   res.send("Welcome to Virtual Sip & Paint!");
 });
 
