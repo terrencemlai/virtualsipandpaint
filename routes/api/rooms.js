@@ -15,6 +15,7 @@ function makeid(length) {
 }
 
 router.post("/new", (req,res) => {
+  // console.log(req);
   let room = new Room({
     host_id: req.body.userId,
     room_token: makeid(20)

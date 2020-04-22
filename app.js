@@ -44,25 +44,25 @@ if (process.env.NODE_ENV === 'production') {
 io.on("connection", (socket) => {
   console.log("Connected to Socket!" + socket.id);
   // socket.emit("init", {});
-  socket.on("startDrawing", (data) => {
-    socket.broadcast.emit("startDrawing", data);
+  socket.on("startDrawing", (room, data) => {
+    socket.broadcast.to(room).emit("startDrawing", data);
   });
 
-  socket.on("draw", (data) => {
-    socket.broadcast.emit("draw", data);
+  socket.on("draw", (room, data) => {
+    socket.broadcast.to(room).emit("draw", data);
   });
 
   //  a room is created with a name variable called "room"
   // this when we create room
   socket.on("create", (room) => {
-    console.log("create data " + room);
+    console.log("create room data " + room);
     socket.join(room);
   });
   // this when others joins the room
-  socket.on("join", (room) => {
-    console.log("join data " + room);
-    socket.join(room);
-  });
+  // socket.on("join", (room) => {
+  //   console.log("join data " + room);
+  //   socket.join(room);
+  // });
 });
 
 const port = process.env.PORT || 5000; 
