@@ -109,7 +109,9 @@
   padding-left: 10px;
   margin-left: 10px;
 }
-
+.join-room{
+  outline: none;
+}
 .logout:hover{
   cursor: pointer;
 }

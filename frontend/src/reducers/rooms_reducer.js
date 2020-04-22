@@ -6,7 +6,7 @@ import {
 export default function (state = {}, action) {
   switch (action.type) {
     case RECEIVE_ROOM:
-      return action.room;
+      return action.room.data;
     default:
       return state;
   }
