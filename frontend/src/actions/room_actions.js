@@ -2,7 +2,7 @@ import {fetchRoom, createRoom} from "../util/room_util";
 
 export const RECEIVE_ROOM = "RECEIVE_ROOM";
 export const RECEIVE_ROOM_ERRORS = "RECEIVE_ROOM_ERRORS";
-export const CREATE_NEW_ROOM = "CREATE_NEW_ROOM";
+// export const CREATE_NEW_ROOM = "CREATE_NEW_ROOM";
 
 export const receiveRoom = room => ({
   type: RECEIVE_ROOM,
@@ -15,10 +15,10 @@ export const receiveRoomErrors = errors => ({
 });
 
 
-export const createNewRoom = roomData => ({
-  type: CREATE_NEW_ROOM,
-  roomData
-});
+// export const createNewRoom = room => ({
+//   type: CREATE_NEW_ROOM,
+//   room
+// });
 
 export const joinRoom = roomToken => dispatch => (
   fetchRoom(roomToken)
@@ -26,7 +26,7 @@ export const joinRoom = roomToken => dispatch => (
   .catch(err => dispatch(receiveRoomErrors(err.response.data)))
 );
 
-export const newRoom = (roomData) => dispatch => (
-  createRoom(roomData)
+export const newRoom = (userId) => dispatch => (
+  createRoom(userId)
   .then(res => dispatch(receiveRoom(res)))
 );

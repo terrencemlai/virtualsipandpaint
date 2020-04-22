@@ -8,11 +8,16 @@ class NavBar extends React.Component {
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
     this.getNavLink = this.getNavLink.bind(this);
+    this.handleCreateRoom = this.handleCreateRoom.bind(this);
   }
 
   logoutUser(e) {
     e.preventDefault();
     this.props.logout();
+  }
+
+  handleCreateRoom(){
+    this.props.newRoom(this.props.currentUser.id);
   }
 
   getLinks() {
@@ -21,7 +26,7 @@ class NavBar extends React.Component {
       <div className="greeting-logout">
         <div className='user-greet' >Welcome {this.props.currentUser.username}!</div>
          <div className='join'>
-           <button className="join-room"><i className="fas fa-plus"></i> New Room</button>
+           <button className="join-room" onClick={this.handleCreateRoom}><i className="fas fa-plus"></i> New Room</button>
            <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i>  Join Room</Link>
          </div>
          <button className="logout" onClick={this.logoutUser}>Log Out</button>
