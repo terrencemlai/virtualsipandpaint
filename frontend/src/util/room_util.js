@@ -5,5 +5,5 @@ export const createRoom = (roomData) => {
 };
 
 export const fetchRoom = (roomToken) => {
-  return axios.get(`api/rooms/join`, roomToken);
+  return axios.get('api/rooms/join', roomToken);
 };
