@@ -1,0 +1,18 @@
+.join-container{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.join-form{
+  background-color: rgb(24, 99, 33);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 25px;
+  border-color: rgb(72, 172, 72);
+  border-style:outset;
+  box-shadow: inset 0 6px 6px rgba(0, 0, 0, 0.075), 0 4px 8px rgba(0, 0, 0, 0.6);
+}

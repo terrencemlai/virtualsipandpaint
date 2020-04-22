@@ -1,0 +1,115 @@
+
+.nav-bar{
+  position: sticky;
+  width: 100%;
+  top:0px;
+  
+}
+.nav-link {
+  text-decoration: none;
+}
+.nav-link:hover {
+  color:#bbbba6;
+}
+/* .nav-beauty{
+  width: 100%;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #407b3d;
+} */
+.nav-beauty{
+  width: 100%;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #407b3d; */
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.075), 0 2px 8px rgba(0, 0, 0, 0.6);
+  background: rgb(3, 36, 0);
+  background: linear-gradient(90deg, rgb(10, 62, 18) 0%, rgb(8, 113, 17) 30%,rgb(82, 194, 95)50%, rgb(9, 121, 44) 70%,  rgb(10, 62, 18)100%);
+}
+
+.app-title{
+  font-family: 'Finger Paint';
+  margin: 20px;
+  color:#fffff0;
+}
+
+.app-title:hover{
+  color:#bbbba6;
+}
+
+.session-links{
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+/* .join-room{
+  margin-top: 40px;
+} */
+
+.right-divide, .join{
+  display: flex;
+  align-items: center;
+  border-right: 1px solid rgb(250, 250, 250);
+  padding-right: 10px;
+  margin-right: 10px;
+}
+.session-links .sign-up, .session-links .login, .join-room{
+  text-decoration: none;
+  padding: 10px;
+  font-size: 15px;
+  background-color: #fffff0;
+  border-radius: 25px;
+  color: #195216;
+  margin: 8px;
+  /* font-family:'Baloo Tammudu 2'; */
+}
+
+.join-room:hover, .sign-up:hover, .login:hover, .logout:hover{
+  cursor: pointer;
+  background-color: #dfdfce;
+  color: #195216;
+}
+
+.greeting-logout{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-greet{
+  margin-right: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 20px;
+  color: #fffff0;
+}
+
+.logout{
+  margin-left: 8px;
+  margin-right: 18px;
+  outline: none;
+  background: #fffff0;
+  border:none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  color:#195216;
+  padding: 10px;
+  font-size: 15px;
+  background-color: #fffff0;
+  border-radius: 25px;
+}
+
+.join{
+  border-left: 1px solid rgb(250, 250, 250);
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.logout:hover{
+  cursor: pointer;
+}

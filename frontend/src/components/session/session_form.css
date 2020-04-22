@@ -1,0 +1,98 @@
+.form-container{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  
+}
+
+.login-form, .signup-form{
+  background-color: rgb(24, 99, 33);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 25px;
+  border-color: rgb(72, 172, 72);
+  border-style:outset;
+  box-shadow: inset 0 6px 6px rgba(0, 0, 0, 0.075), 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.redirect{
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-title{
+  /* font-family: 'Finger Paint'; */
+  color:#fffff0;
+  /* background: -webkit-linear-gradient(linear, left top, left bottom, from(#f00), to(#333));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; */
+  font-size: 60px;
+}
+/* .fa-paint-brush:hover{ */
+  /* : linear-gradient(red,orange,yellow,green,blue,violet); */
+/* } */
+.form-input{
+  padding: 10px;
+  height: 15px;
+  width: 400px;
+  border-style: none;
+  border-radius: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+}
+
+.one:focus{
+  outline: none;
+  border-color: rgb(165, 62, 62);
+  box-shadow: inset 0 3px 3px rgba(211, 10, 10, 0.639), 0 0 8px rgba(147, 65, 65, 0.974);
+}
+.two:focus{
+  outline: none;
+  border-color: rgb(179, 121, 60);
+  box-shadow: inset 0 3px 3px rgb(208, 125, 0), 0 0 8px rgb(187, 120, 60);
+}
+.three:focus{
+  outline: none;
+  border-color: rgb(196, 181, 72);
+  box-shadow: inset 0 3px 3px rgb(212, 223, 0), 0 0 8px rgb(215, 205, 73);
+}
+.four:focus{
+  outline: none;
+  border-color: rgb(65, 88, 165);
+  box-shadow: inset 0 3px 3px rgb(77, 58, 205), 0 0 8px rgb(76, 91, 174);
+}
+
+.form-button{
+  outline: none;
+  background: none;
+  border:none;
+  font-family: 'Finger Paint';
+  color:#fffff0;
+  font-size: 25px;
+}
+
+.form-button:hover{
+  color:#bbbba6;
+  cursor:pointer;
+}
+
+.error-ul{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  color:#ffffff;
+  text-align: center;
+  padding-inline-start: 0px;
+}
+
+.error-li{
+  margin: 0px;
+  margin-top: 4px;
+}
