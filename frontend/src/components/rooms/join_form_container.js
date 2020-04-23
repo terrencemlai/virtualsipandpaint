@@ -1,6 +1,4 @@
-import React from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
 import { joinRoom } from "../../actions/room_actions";
 import JoinForm from "./join_form";
 
