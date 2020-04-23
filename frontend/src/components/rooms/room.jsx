@@ -63,11 +63,6 @@ class Room extends React.Component {
       that.receiveStartDrawing(data.x, data.y);
     });
 
-<<<<<<< HEAD
-=======
-    this.socket.emit("create", this.props.match.params.id);
-
->>>>>>> room-style
     this.socket.on("draw", function (data) {
       that.receiveDraw(
         data.x,
