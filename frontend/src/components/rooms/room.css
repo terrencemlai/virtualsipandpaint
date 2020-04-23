@@ -1,146 +1,499 @@
 canvas {
     background-color: white;
+    margin-left: 100px;
+    cursor: crosshair;
 }
 
+/* color tools ---------------------------------------------------------- */
+.fa-eraser{
+    font-size: 16px;
+}
+.swatch:hover{
+    cursor: pointer;
+}
+.color{
+    display: flex;
+}
 .tool-options {
+    margin: 20px;
+    margin-left: 100px;
     display: flex;
     flex-direction: row;
-    height:100px;
-    width: 600%;
-    border: 1px solid lightgray;
+    height:100%;
+    width: 90%;
 }
 
-#red {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    border: 1px solid lightgray;
-    border-radius: 50%;
+.color-options{
+    border: 3px;
+    border-radius: 15px;
+    border-style: outset;
+}
+.color>div{
+    border-style: outset;
+    width: 50px;
+    height: 20px;
+}
+.color>div:active{
+    border-style: inset;
 }
 
+.size-options{
+    width:200px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top:4px;
+    margin-left: 20px;
+}
+.size-options>div{
+    border-radius:20px;
+    margin:4px;
+    border-style: outset;
+}
+.size-options>div:active{
+    border-style: inset;
+}
+/* red----- */
+
+#red{
+    background-color: #630606;
+    border-top-left-radius: 10px;
+}
 #red:hover {
-    cursor: pointer;
+    background-color: rgba(75, 0, 0, 0.776);
 }
 
+#red2{
+    background-color: #960000;
+}
+#red2:hover {
+    background-color: rgba(109, 14, 14, 0.796);
+}
+#red3{
+    background-color: #cb0000;
+}
+#red3:hover{
+    background-color: #d70000b8;
+}
+#red4{
+    background-color: #ff0000;
+}
+#red4:hover{
+    background-color: hsla(0, 100%, 50%, 0.721);
+}
+#red5{
+    background-color: #eb5555;
+}
+#red5:hover{
+    background-color: hsla(0, 79%, 63%, 0.817);
+}
+#red6{
+    background-color: #f09999;
+}
+#red6:hover{
+    background-color: hsla(0, 74%, 77%, 0.762);
+}
+#red7{
+   border-top-right-radius: 10px;
+    background-color: #ffbebe;
+}
+#red7:hover{
+   /* border-top-right-radius: 10px; */
+    background-color: hsla(0, 100%, 87%, 0.776);
+}
+
+/* orange---------------------------------------- */
+
+
+#orange{
+    background-color: #9b4800;
+}
+#orange:hover{
+    background-color: hsla(28, 100%, 33%, 0.783);
+}
+
+#orange2{
+    background-color: #c95e00;
+}
+#orange2:hover{
+    background-color: rgba(198, 92, 0, 0.769)
+}
+
+#orange3{
+    background-color: #e47600;
+}
+#orange3:hover{
+    background-color:hsla(31, 100%, 45%, 0.782);
+}
+
+#orange4{
+    background-color: #ff7700;
+}#orange4:hover{
+    background-color: rgba(255, 119, 0, 0.776);
+}
+#orange5{
+    background-color: #ff8519;
+}#orange5:hover{
+    background-color: #fe8820bf;
+}
+
+#orange6{
+    background-color: #ffa353;
+}#orange6:hover{
+    background-color: #ffa353ba;
+}
+
+#orange7{
+    background-color: #ffc796;
+}#orange7:hover{
+    background-color: #ffc796cd;
+}
+/* yellow-------------- */
 #yellow {
-    width: 100px;
-    height: 100px;
-    background-color: yellow;
-    border: 1px solid lightgray;
-    border-radius: 50%;
+    background-color: #9e8900;
 }
-
 #yellow:hover {
-    cursor: pointer;
+    background-color: #9e8900d0;
 }
-
-#orange {
-    width: 100px;
-    height: 100px;
-    background-color: orange;
-    border: 1px solid lightgray;
-    border-radius: 50%;
+#yellow2 {
+    background-color: #b8a40c;
 }
-
-#orange:hover {
-    cursor: pointer;
+#yellow2:hover {
+    background-color: #b8a40cbb;
 }
+#yellow3 {
+    background-color: #e1c700;
+}
+#yellow3:hover {
+    background-color: #e1c700a1;
+}
+#yellow4 {
+    background-color: #ffe100;
+}
+#yellow4:hover {
+    background-color: #ffe100ad;
+}
+#yellow5 {
+    background-color: yellow;
+}
+#yellow5:hover {
+    background-color: rgba(255, 255, 0, 0.604);
+}
+#yellow6 {
+    background-color: #fff954;
+}
+#yellow6:hover {
+    background-color: #fff954bd;
+}
+#yellow7 {
+    background-color: #ffff88;
+}
+#yellow7:hover {
+    background-color: #ffff88a5;
+}
+/* green----------------- */
 
 #green {
-    width: 100px;
-    height: 100px;
-    background-color: green;
-    border: 1px solid lightgray;
-    border-radius: 50%;
+    background-color: #003e00;
 }
-
 #green:hover {
-    cursor: pointer;
+    background-color: #003e00b6;
 }
+#green2 {
+    background-color: #005b00;
+}
+#green2:hover {
+    background-color: #005b00b6;
+}
+#green3 {
+    background-color: #007c00;
+}
+#green3:hover {
+    background-color: #007c00bd;
+}
+#green4 {
+    background-color: #00a000;
+}
+#green4:hover {
+    background-color: #00a000b3;
+}
+#green5 {
+    background-color: #38c738;
+}
+#green5:hover {
+    background-color: #38c738b3;
+}
+#green6 {
+    background-color: #4efe4e;
+}
+#green6:hover {
+    background-color: #4efe4eb8;
+}
+#green7 {
+    background-color: #a4e4a4;
+}
+#green7:hover {
+    background-color: #a4e4a4bd;
+}
+/* blue--------- */
 
-#purple {
-    width: 100px;
-    height: 100px;
-    background-color: purple;
-    border: 1px solid lightgray;
-    border-radius: 50%;
-}
-
-#purple:hover {
-    cursor: pointer;
-}
-
-#black {
-    width: 100px;
-    height: 100px;
-    background-color: black;
-    border: 1px solid lightgray;
-    border-radius: 50%;
-}
-
-#blue:hover {
-    cursor: pointer;
-}
 
 #blue {
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    border: 1px solid lightgray;
-    border-radius: 50%;
+    background-color: #00006a;
 }
-
-#black:hover {
-    cursor: pointer;
+#blue:hover {
+    background-color: #00006ab3;
 }
+#blue2 {
+    background-color: #00009b;
+}
+#blue2:hover {
+    background-color: #00009ba1;
+}
+#blue3 {
+    background-color: #0000d5;
+}
+#blue3:hover {
+    background-color: #0000d5;
+}
+#blue4 {
+    background-color: #2a2aff;
+}
+#blue4:hover {
+    background-color: #2a2affad;
+}
+#blue5 {
+    background-color: #2c77f9;
+}
+#blue5:hover {
+    background-color: #2c77f9ac;
+}
+#blue6 {
+    background-color: #6fa8fe;
+}
+#blue6:hover {
+    background-color: #6fa8feaa;
+}
+#blue7 {
+    background-color: #b7e0ff;
+}
+#blue7 {
+    background-color: #b7e0ffa3;
+}
+/* purple---- */
+#purple {
+    background-color: #2b0041;
+}
+#purple:hover {
+    background-color: #2b0041af;
+}
+#purple2 {
+    background-color: #430059;
+}
+#purple2:hover {
+    background-color: #430059a6;
+}
+#purple3 {
+    background-color: #5a0087;
+}
+#purple3:hover {
+    background-color: #5a0087b1;
+}
+#purple4 {
+    background-color: #7f03b5;
+}
+#purple4:hover {
+    background-color: #8003b5aa;
+}
+#purple5 {
+    background-color: #b300ff;
+}
+#purple5:hover {
+    background-color: #b300ff9c;
+}
+#purple6{
+    background-color: #bc83e4;
+}
+#purple6:hover{
+    background-color: #bc83e4a1;
+}
+#purple7 {
+    background-color: #debaf0;
+}
+#purple7:hover {
+    background-color: #debaf0a3;
+}
+/* brown-- */
 
-#white {
-    width: 100px;
-    height: 100px;
+#brown {
+    background-color: #291717;
+}
+#brown:hover {
+    background-color: #291717c2;
+}
+#brown2 {
+    background-color: #35221e;
+}
+#brown2:hover {
+    background-color: #35221ed0;
+}
+#brown3 {
+    background-color: #3a2822;
+}
+#brown3:hover {
+    background-color: #3a2822ad;
+}
+#brown4 {
+    background-color: #433728;
+}
+#brown4:hover {
+    background-color: #433728ba;
+}
+#brown5 {
+    background-color: #69523f;
+}
+#brown5:hover {
+    background-color: #69523fc1;
+}
+#brown6 {
+    background-color: #a4745a;
+}
+#brown6:hover {
+    background-color: #a4745ab1;
+}
+#brown7 {
+    background-color: #dfc5a6;
+}
+#brown7:hover {
+    background-color: #dfc5a6a5;
+}
+/* shades--- */
+#shade {
+    background-color: black;
+    border-bottom-left-radius: 10px;
+}
+#shade:hover {
+    background-color: rgba(0, 0, 0, 0.741);
+}
+#shade2 {
+    background-color: #292929;
+
+}
+#shade2:hover {
+    background-color: #292929c6;
+
+}
+#shade3 {
+    background-color: #444444;
+}
+#shade3:hover {
+    background-color: #444444bd;
+}
+#shade4 {
+    background-color: #717171;
+   
+}
+#shade4:hover {
+    background-color: #717171bd;
+   
+}
+#shade5 {
+    background-color: #a5a5a5;
+  
+}
+#shade5:hover {
+    background-color: #a5a5a5aa;
+  
+}
+#shade6 {
+    background-color: #dad9d9;
+}
+#shade6:hover {
+    background-color: #dad9d9aa;
+}
+#shade7 {
     background-color: white;
-    border: 1px dashed lightgray;
-    border-radius: 50%;
+    /* border: 1px dashed lightgray; */
+    border-bottom-right-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#white:hover {
-    cursor: pointer;
-}
 
-#linewidth-5 {
-    width: 100px;
-    height: 100px;
+
+#linewidth-1,#linewidth-5, #linewidth-10,#linewidth-20,
+#linewidth-30,#linewidth-40,#linewidth-50,#linewidth-real-big,
+#linewidth-big,#linewidth-75{
+    width: 70px;
+    height: 30px;
     background-color: lightgray;
     border: 1px solid lightgray;
-    border-radius: 50%;
+    /* border-radius: 20px; */
     color: black;
-    font-size: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-style: outset;
 }
-#linewidth-5:hover {
-        cursor: pointer;
+#linewidth-1:hover,#linewidth-10:hover,
+#linewidth-5:hover,#linewidth-20:hover,
+#linewidth-50:hover,#linewidth-30:hover,
+#linewidth-40:hover,#linewidth-75:hover,
+#linewidth-big:hover,#linewidth-real-big:hover {
+    cursor: pointer;
+    background-color: rgb(152, 152, 152);
 }
-
+#linewidth-1{
+     font-size: 4px;
+}
+#linewidth-5{
+     font-size: 6px;
+}
 #linewidth-10 {
-    width: 100px;
-    height: 100px;
-    background-color: lightgray;
-    border: 1px solid lightgray;
-    border-radius: 50%;
-    font-size: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+ 
+    font-size: 8px;
+  
 }
-
-#linewidth-10:hover {
-   cursor: pointer;
+#linewidth-20 {
+    /* border-radius: 50%; */
+    font-size: 11px;
+ 
 }
+#linewidth-30 {
+    /* border-radius: 50%; */
+    font-size: 15px;
 
+}
+#linewidth-40 {
+    /* border-radius: 50%; */
+    font-size: 19px;
+  
+}
+#linewidth-50 {
+    /* border-radius: 50%; */
+    font-size: 24px;
+  
+}
+#linewidth-75 {
+    /* border-radius: 50%; */
+    font-size: 30px;
+  
+}
+#linewidth-big {
+    /* border-radius: 50%; */
+    font-size: 25px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+#linewidth-real-big {
+    /* border-radius: 50%; */
+    font-size: 30px;
+    font-weight: 900;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
 .save-artwork-button {
     display: flex;
     justify-content: center;
