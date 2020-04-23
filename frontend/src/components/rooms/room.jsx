@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import io from "socket.io-client";
 import "./room.css";
+import MediaHandler from '../../MediaHandler';
 
 class Room extends React.Component {
   constructor(props) {
@@ -11,6 +12,8 @@ class Room extends React.Component {
       color: "black",
       lineWidth: 5,
       lineCap: "round",
+      hasMedia: false,
+      otherUserId: null,
     };
 
     this.socket = io.connect("http://localhost:5000");
@@ -18,18 +21,47 @@ class Room extends React.Component {
     this.changeColor = this.changeColor.bind(this);
     this.changeLineWidth = this.changeLineWidth.bind(this);
     this.handleSaveArtwork = this.handleSaveArtwork.bind(this);
+
+    this.mediaHandler = new MediaHandler();
   }
 
   componentDidMount() {
-    const that = this;
     this.props.getRoom(this.props.roomId);
+    this.socket.emit("create", this.props.match.params.id)
+
+    const that = this;
+
+    this.mediaHandler.getPermissions().then((stream) => {
+      this.setState({ hasMedia: true});
+      const myVidCanvas = document.createElement('canvas');
+      const myVidContext = myVidCanvas.getContext('2d');
+
+      try {
+        this.myVideo.srcObject = stream;
+      } catch(e) {
+        this.myVideo.src = URL.createObjectURL(stream);
+      }
+
+      this.myVideo.play();
+
+      function createMyVidCanvas() {
+        myVidContext.drawImage(that.myVideo, 0,0, myVidCanvas.width, myVidCanvas.height);
+        that.socket.emit("video-stream", (that.props.match.params.id), {
+          dataUrl: myVidCanvas.toDataURL(),
+        });      
+      }
+
+      setInterval(createMyVidCanvas, 300);
+    })
+
+    
+    this.socket.on("video-stream", function(data) {
+      that.renderPeerVideo(data.dataUrl);
+    })
 
     this.socket.on("startDrawing", function (data) {
       that.receiveStartDrawing(data.x, data.y);
     });
-
-    this.socket.emit("create", this.props.match.params.id)
-
 
     this.socket.on("draw", function (data) {
       that.receiveDraw(
@@ -41,6 +73,15 @@ class Room extends React.Component {
       );
     });
 
+  }
+
+  renderPeerVideo(dataUrl){
+    const img = new Image();
+    img.onload = () => {
+      const peerContext = this.peerVideo.getContext('2d');
+      peerContext.drawImage(img, 0,0);
+    }
+    img.src = dataUrl;
   }
 
   getContext() {
@@ -123,38 +164,45 @@ class Room extends React.Component {
         } else {
           return (
             <div className="room-container">
-          <section className="tool-options">
-            <div id="red" onClick={() => this.changeColor("red")}></div>
-            <div id="orange" onClick={() => this.changeColor("orange")}></div>
-            <div id="yellow" onClick={() => this.changeColor("yellow")}></div>
-            <div id="green" onClick={() => this.changeColor("green")}></div>
-            <div id="blue" onClick={() => this.changeColor("blue")}></div>
-            <div id="purple" onClick={() => this.changeColor("purple")}></div>
-            <div id="black" onClick={() => this.changeColor("black")}></div>
-            <div id="linewidth-5" onClick={() => this.changeLineWidth(5)}>
-              5
-            </div>
-            <div id="linewidth-10" onClick={() => this.changeLineWidth(10)}>
-              10
-            </div>
-            <div id="white" onClick={() => this.changeColor("white")}>
-              ERASE
-            </div>
-          </section>
-          <canvas
-          ref="canvas"
-          width="600px"
-          height="600px"
-          onMouseDown={(e) =>
-            this.startDrawing(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
-          }
-          onMouseUp={() => this.endDrawing()}
-          onMouseLeave={() => this.endDrawing()}
-          onMouseMove={(e) =>
-            this.draw(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
-          }
-          />
-          <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
+                <div className="video-container" >
+                  <video className="my-video" ref={(ref)=> {this.myVideo = ref;}}></video>
+                  <canvas className="peer-video" ref={(ref)=> {this.peerVideo = ref;}}></canvas>
+                </div>
+
+                <section className="tool-options">
+                  <div id="red" onClick={() => this.changeColor("red")}></div>
+                  <div id="orange" onClick={() => this.changeColor("orange")}></div>
+                  <div id="yellow" onClick={() => this.changeColor("yellow")}></div>
+                  <div id="green" onClick={() => this.changeColor("green")}></div>
+                  <div id="blue" onClick={() => this.changeColor("blue")}></div>
+                  <div id="purple" onClick={() => this.changeColor("purple")}></div>
+                  <div id="black" onClick={() => this.changeColor("black")}></div>
+                  <div id="linewidth-5" onClick={() => this.changeLineWidth(5)}>
+                    5
+                  </div>
+                  <div id="linewidth-10" onClick={() => this.changeLineWidth(10)}>
+                    10
+                  </div>
+                  <div id="white" onClick={() => this.changeColor("white")}>
+                    ERASE
+                  </div>
+                </section>
+
+                <canvas
+                  ref="canvas"
+                  width="600px"
+                  height="600px"
+                  onMouseDown={(e) =>
+                    this.startDrawing(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
+                  }
+                  onMouseUp={() => this.endDrawing()}
+                  onMouseLeave={() => this.endDrawing()}
+                  onMouseMove={(e) =>
+                    this.draw(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
+                  }
+                />
+
+                <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
         </div>
       );
     }

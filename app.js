@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 
 io.on("connection", (socket) => {
   console.log("Connected to Socket!" + socket.id);
-  // socket.emit("init", {});
+
   socket.on("startDrawing", (room, data) => {
     socket.broadcast.to(room).emit("startDrawing", data);
   });
@@ -53,6 +53,11 @@ io.on("connection", (socket) => {
   socket.on("draw", (room, data) => {
     socket.broadcast.to(room).emit("draw", data);
   });
+
+  socket.on("video-stream", (room, data) => {
+    console.log("Video sent");
+    socket.broadcast.to(room).emit("video-stream", data);
+  })
 
   //  a room is created with a name variable called "room"
   // this when we create room
@@ -65,6 +70,7 @@ io.on("connection", (socket) => {
   //   console.log("join data " + room);
   //   socket.join(room);
   // });
+
 });
 
 const port = process.env.PORT || 5000; 
