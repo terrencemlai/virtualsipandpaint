@@ -5,6 +5,10 @@ import "./room.css";
 import MediaHandler from '../../MediaHandler';
 import RoomLogInFormContainer from './room_login_container';
 
+const HOST =
+  process.env.NODE_ENV === "production"
+    ? "https://tipsypainter.herokuapp.com/"
+    : "http://localhost:5000";
 
 class Room extends React.Component {
   constructor(props) {
@@ -18,7 +22,7 @@ class Room extends React.Component {
       otherUserId: null,
     };
 
-    this.socket = io.connect("http://localhost:5000");
+    this.socket = io.connect(HOST);
 
     this.changeColor = this.changeColor.bind(this);
     this.changeLineWidth = this.changeLineWidth.bind(this);
