@@ -38,10 +38,8 @@ router.get("/join", (req,res) => {
 
 
 router.get("/:id", (req,res) => {
-  console.log(req.params.id);
   Room.find({ _id: req.params.id })
     .then(room => {
-      console.log(room);
       if (room) {
         return res.json(room);
       } else {

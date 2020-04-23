@@ -12,8 +12,6 @@ const path = require('path');
 
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
-// var io = require('socket.io')(server, 
-//   { origins: 'mydomain.com:* http://mydomain.com:* http://www.mydomain.com:*' });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -21,10 +19,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 require("./passport/passport")(passport);
 
-// app.get("/", (req, res) => {
-//   console.log(res);
-//   res.send("Welcome to Virtual Sip & Paint!");
-// });
+
 
 app.use("/api/users", users);
 app.use("/api/rooms", rooms);
@@ -55,21 +50,14 @@ io.on("connection", (socket) => {
   });
 
   socket.on("video-stream", (room, data) => {
-    console.log("Video sent");
     socket.broadcast.to(room).emit("video-stream", data);
   })
 
-  //  a room is created with a name variable called "room"
-  // this when we create room
+
   socket.on("create", (room) => {
-    console.log("create room data " + room);
     socket.join(room);
   });
-  // this when others joins the room
-  // socket.on("join", (room) => {
-  //   console.log("join data " + room);
-  //   socket.join(room);
-  // });
+
 
 });
 

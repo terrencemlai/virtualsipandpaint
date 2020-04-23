@@ -13,13 +13,14 @@ class JoinForm extends React.Component {
     this.clearedErrors = false;
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.signedIn === true) {
-  //     this.props.history.push("/rooms");
-  //   }
+  componentDidMount() {
+    let queryParams = new URLSearchParams(this.props.location.search)
+    let roomtoken = queryParams.get("roomtoken")
+    if (roomtoken) {
+      return this.setState({ room_token: roomtoken })
+    }
+  }
 
-  //   this.setState({ errors: nextProps.errors });
-  // }
 
   update(field) {
     return (e) =>
