@@ -12,14 +12,18 @@ class Room extends React.Component {
       lineWidth: 5,
       lineCap: "round",
     };
+
     this.socket = io.connect("http://localhost:5000");
+
     this.changeColor = this.changeColor.bind(this);
     this.changeLineWidth = this.changeLineWidth.bind(this);
+    this.handleSaveArtwork = this.handleSaveArtwork.bind(this);
   }
 
   componentDidMount() {
-    debugger
     const that = this;
+    this.props.getRoom(this.props.roomId);
+
     this.socket.on("startDrawing", function (data) {
       that.receiveStartDrawing(data.x, data.y);
     });
@@ -103,29 +107,41 @@ class Room extends React.Component {
     this.setState({ lineWidth: newWidth });
   }
 
+  handleSaveArtwork() {
+    const dataUrl = this.refs.canvas.toDataURL();
+    this.props.saveArtwork({ 
+      userId: this.props.currentUser.id,
+      dataUrl: dataUrl,
+    })
+    //For Later:  Add .then to prompt modal message that Artwork was successfully saved
+  }
+
+      
   render() {
-    debugger
-    return (
-      <div className="room-container">
-        <section className="tool-options">
-          <div id="red" onClick={() => this.changeColor("red")}></div>
-          <div id="orange" onClick={() => this.changeColor("orange")}></div>
-          <div id="yellow" onClick={() => this.changeColor("yellow")}></div>
-          <div id="green" onClick={() => this.changeColor("green")}></div>
-          <div id="blue" onClick={() => this.changeColor("blue")}></div>
-          <div id="purple" onClick={() => this.changeColor("purple")}></div>
-          <div id="black" onClick={() => this.changeColor("black")}></div>
-          <div id="linewidth-5" onClick={() => this.changeLineWidth(5)}>
-            5
-          </div>
-          <div id="linewidth-10" onClick={() => this.changeLineWidth(10)}>
-            10
-          </div>
-          <div id="white" onClick={() => this.changeColor("white")}>
-            ERASE
-          </div>
-        </section>
-        <canvas
+        if (Object.values(this.props.room).length === 0) {
+          return (<div className="invalid-room">Not a Valid Room</div>);
+        } else {
+          return (
+            <div className="room-container">
+          <section className="tool-options">
+            <div id="red" onClick={() => this.changeColor("red")}></div>
+            <div id="orange" onClick={() => this.changeColor("orange")}></div>
+            <div id="yellow" onClick={() => this.changeColor("yellow")}></div>
+            <div id="green" onClick={() => this.changeColor("green")}></div>
+            <div id="blue" onClick={() => this.changeColor("blue")}></div>
+            <div id="purple" onClick={() => this.changeColor("purple")}></div>
+            <div id="black" onClick={() => this.changeColor("black")}></div>
+            <div id="linewidth-5" onClick={() => this.changeLineWidth(5)}>
+              5
+            </div>
+            <div id="linewidth-10" onClick={() => this.changeLineWidth(10)}>
+              10
+            </div>
+            <div id="white" onClick={() => this.changeColor("white")}>
+              ERASE
+            </div>
+          </section>
+          <canvas
           ref="canvas"
           width="600px"
           height="600px"
@@ -137,10 +153,12 @@ class Room extends React.Component {
           onMouseMove={(e) =>
             this.draw(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
           }
-        />
-      </div>
-    );
-  }
-}
-
+          />
+          <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
+        </div>
+      );
+    }
+}};
+  
 export default withRouter(Room);
+  

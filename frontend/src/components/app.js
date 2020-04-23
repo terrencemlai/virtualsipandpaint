@@ -8,7 +8,7 @@ import JoinFormContainer from './rooms/join_form_container';
 // import HomePage from './home/home_page';
 import HomePage from './home/home_page';
 // import SplashPage from './splash/splash';
-import Room from './rooms/room.jsx';
+import RoomContainer from './rooms/room_container';
 const App = () => (
   <>
     <NavBarContainer />
@@ -19,7 +19,7 @@ const App = () => (
       <AuthRoute exact path="/register" component={SignupFormContainer} />
 
       <ProtectedRoute exact path="/home" component={HomePage} />
-      <Route path="/rooms/:id" component={Room}/>
+      <Route path="/rooms/:id" component={RoomContainer}/>
     </Switch>
   </>
 );

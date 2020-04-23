@@ -19,7 +19,6 @@ class NavBar extends React.Component {
   // }
 
   handleCreateRoom(){
-    // debugger
     this.props.newRoom({userId: this.props.currentUser.id})
       .then(() => this.props.history.push(`/rooms/${this.props.room._id}`));
   }

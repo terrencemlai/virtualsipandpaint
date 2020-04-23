@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI;
 const users = require("./routes/api/users");
 const rooms = require("./routes/api/rooms");
+const artworks = require("./routes/api/artworks");
 const User = require("./models/User");
 const bodyParser = require("body-parser");
 const passport = require('passport');
@@ -27,6 +28,7 @@ require("./passport/passport")(passport);
 
 app.use("/api/users", users);
 app.use("/api/rooms", rooms);
+app.use("/api/artworks", artworks);
 
 
 mongoose
