@@ -25,32 +25,54 @@ class NavBar extends React.Component {
 
 
   getLinks() {
-   if (this.props.loggedIn) {
-     return (
-      <div className="greeting-logout">
-        <div className='user-greet' >Welcome {this.props.currentUser.username}!</div>
-         <div className='join'>
-           <button className="join-room" onClick={this.handleCreateRoom}><i className="fas fa-plus"></i> New Room</button>
-           <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i>  Join Room</Link>
-         </div>
-         <button className="logout" onClick={this.props.logout}>Log Out</button>
-      </div>
-     );
-   } else {
-     return (
-       <div className="session-links">
-         <div className='right-divide'>
-           <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i> Join Room</Link>
-         </div>
-         <Link className="sign-up" to={"/register"}>
-           Sign Up
+    const welcome = ["Welcome to tipsy painting,", "Welcome tipsy painter,", "Ready. Set. Sip and paint,"];
+    const welcomeMsg = welcome[Math.floor(Math.random() * welcome.length)]
+
+    if (window.location.href.includes("rooms") && this.props.loggedIn) {
+      return (
+        <div className="greeting-logout">
+          <div className='user-greet' >{welcomeMsg} {this.props.currentUser.username}!</div>
+          <button className="logout" onClick={this.props.logout}>Log Out</button>
+        </div>
+      );
+    }
+    else if (this.props.loggedIn) {
+      return (
+        <div className="greeting-logout">
+          <div className='user-greet' >{welcomeMsg} {this.props.currentUser.username}!</div>
+          <div className='join'>
+            <button className="join-room" onClick={this.handleCreateRoom}><i className="fas fa-plus"></i> New Room</button>
+            <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i>  Join Room</Link>
+          </div>
+          <button className="logout" onClick={this.props.logout}>Log Out</button>
+        </div>
+      );
+    } else if (window.location.href.includes("rooms")) {
+      return (
+        <div className="session-links">
+          <Link className="sign-up" to={"/register"}>
+            Sign Up
          </Link>
-         <Link className="login" to={"/login"}>
-           Log In
+          <Link className="login" to={"/login"}>
+            Log In
          </Link>
-       </div>
-     );
-   }
+        </div>
+      );
+    } else {
+      return (
+        <div className="session-links">
+          <div className='right-divide'>
+            <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i> Join Room</Link>
+          </div>
+          <Link className="sign-up" to={"/register"}>
+            Sign Up
+         </Link>
+          <Link className="login" to={"/login"}>
+            Log In
+         </Link>
+        </div>
+      );
+    }
   }
 
   getNavLink(){

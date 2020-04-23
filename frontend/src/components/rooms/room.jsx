@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import io from "socket.io-client";
 import "./room.css";
 import MediaHandler from '../../MediaHandler';
+import RoomLogInFormContainer from './room_login_container';
+
 
 class Room extends React.Component {
   constructor(props) {
@@ -148,14 +150,57 @@ class Room extends React.Component {
   }
 
   handleSaveArtwork() {
-    const dataUrl = this.refs.canvas.toDataURL();
-    this.props.saveArtwork({
-      userId: this.props.currentUser.id,
-      dataUrl: dataUrl,
-    });
-    //For Later:  Add .then to prompt modal message that Artwork was successfully saved
+    if (typeof this.props.currentUser.id !== "undefined") {
+      const dataUrl = this.refs.canvas.toDataURL();
+      this.props.saveArtwork({
+        userId: this.props.currentUser.id,
+        dataUrl: dataUrl,
+      })
+      const modal = document.getElementById("myModal-artwork-save");
+      const span = document.getElementsByClassName("close")[1];
+      modal.style.display = "block";
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      }
+    } else {
+      const modal = document.getElementById("myModal-artwork-nosave");
+      const span = document.getElementsByClassName("close")[0];
+      modal.style.display = "block";
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      }
+    }
   }
 
+  handleInvite() {
+    const el = document.createElement('textarea');
+    el.value = window.location.origin + `/login#join?roomtoken=${this.props.room[0].room_token}`;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    const modal = document.getElementById("myModal-invite");
+    const span = document.getElementsByClassName("close")[2];
+    modal.style.display = "block";
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
 
   render() {
     
@@ -292,11 +337,26 @@ class Room extends React.Component {
               this.draw(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
             }
           />
-          <div
-            className="save-artwork-button"
-            onClick={() => this.handleSaveArtwork()}
-          >
-            Save Artwork
+          <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
+          <div id="myModal-artwork-nosave" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>Please login to save the canvas</p>
+              <div><RoomLogInFormContainer /></div>
+            </div>
+          </div>
+          <div id="myModal-artwork-save" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>Your artwork is saved in your page</p>
+            </div>
+          </div>
+          <div className="save-artwork-button" onClick={() => this.handleInvite()}>Invite</div>
+          <div id="myModal-invite" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>Your link is copied to your clipboard</p>
+            </div>
           </div>
         </div>
       );
