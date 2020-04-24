@@ -16,7 +16,7 @@
 .list-left {
   justify-content: left;
   padding: 20px;
-  border-right: solid #195216 2px;
+  /* border-right: solid #195216 2px; */
   padding-right: 60px;
 }
 
@@ -38,6 +38,10 @@
   width: 90%;
   font-size: larger;
   padding: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .welcome {
