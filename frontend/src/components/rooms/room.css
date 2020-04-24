@@ -595,3 +595,37 @@ canvas {
     font-size: 50px;
     text-align: center;
 }
+
+
+
+.carousel-image {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border: 1px solid lightgray;
+}
+
+.carousel-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 300px;
+}
+
+.carousel-button {
+    height: 30px;
+    width: 30px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    border-radius: 50%;
+    margin: 0.25em;
+}
+
+.carousel-button:hover{
+    cursor: pointer;
+}
