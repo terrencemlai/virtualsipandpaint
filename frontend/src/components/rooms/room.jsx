@@ -210,14 +210,10 @@ class Room extends React.Component {
     
 
     if (Object.values(this.props.room).length === 0) {
-      return <div className="invalid-room">Not a Valid Room</div>;
+      return <div className="invalid-room"><i className="far fa-frown-open"></i>&nbsp;Not a Valid Room&nbsp;<i className="far fa-sad-tear"></i></div>;
     } else {
       return (
         <div className="room-container">
-          <div className="video-container" >
-            <video className="my-video" ref={(ref)=> {this.myVideo = ref;}}></video>
-            <canvas className="peer-video" ref={(ref)=> {this.peerVideo = ref;}}></canvas>
-          </div>
           <section className="tool-options">
             <section className="color-options">
               <div className="color">
@@ -257,7 +253,7 @@ class Room extends React.Component {
                 <div id="green7" className="swatch"onClick={() => this.changeColor("#a4e4a4")}></div>
               </div>
               <div className="color">
-                <div id="blue" className="swatch"onClick={() => this.changeColor("#0006a")}></div>
+                <div id="blue" className="swatch"onClick={() => this.changeColor("#00006a")}></div>
                 <div id="blue2" className="swatch"onClick={() => this.changeColor("#00009b")}></div>
                 <div id="blue3" className="swatch"onClick={() => this.changeColor("#0000d5")}></div>
                 <div id="blue4" className="swatch"onClick={() => this.changeColor("#2a2aff")}></div>
@@ -297,28 +293,28 @@ class Room extends React.Component {
             </section>
             <section className="size-options">
               <div id="linewidth-1" onClick={() => this.changeLineWidth(1)}>
-                <i class="fas fa-circle"></i>
+                <i className="fas fa-circle"></i>
               </div>
               <div id="linewidth-5" onClick={() => this.changeLineWidth(5)}>
-                <i class="fas fa-circle"></i>
+                <i className="fas fa-circle"></i>
               </div>
               <div id="linewidth-10" onClick={() => this.changeLineWidth(10)}>
-                <i class="fas fa-circle"></i>
+                <i className="fas fa-circle"></i>
               </div>
               <div id="linewidth-20" onClick={() => this.changeLineWidth(20)}>
-                <i class="fas fa-circle"></i>
+                <i className="fas fa-circle"></i>
               </div>
               <div id="linewidth-30" onClick={() => this.changeLineWidth(30)}>
-                <i class="fas fa-circle"></i>
+                <i className="fas fa-circle"></i>
               </div>
               <div id="linewidth-40" onClick={() => this.changeLineWidth(40)}>
-                <i class="fas fa-circle"></i>
+                <i className="fas fa-circle"></i>
               </div>
               <div id="linewidth-50" onClick={() => this.changeLineWidth(50)}>
-                <i class="fas fa-circle"></i>
+                <i className="fas fa-circle"></i>
               </div>
               <div id="linewidth-75" onClick={() => this.changeLineWidth(75)}>
-                <i class="fas fa-circle"></i>
+                <i className="fas fa-circle"></i>
               </div>
               <div id="linewidth-big" onClick={() => this.changeLineWidth(100)}>
                 BIG
@@ -341,26 +337,31 @@ class Room extends React.Component {
               this.draw(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
             }
           />
+          
           <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
-          <div id="myModal-artwork-nosave" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
+          <div id="myModal-artwork-nosave" className="modal">
+            <div className="modal-content">
+              <span className="close">&times;</span>
               <p>Please login to save the canvas</p>
               <div><RoomLogInFormContainer /></div>
             </div>
           </div>
-          <div id="myModal-artwork-save" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
+          <div id="myModal-artwork-save" className="modal">
+            <div className="modal-content">
+              <span className="close">&times;</span>
               <p>Your artwork is saved in your page</p>
             </div>
           </div>
           <div className="save-artwork-button" onClick={() => this.handleInvite()}>Invite</div>
-          <div id="myModal-invite" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
+          <div id="myModal-invite" className="modal">
+            <div className="modal-content">
+              <span className="close">&times;</span>
               <p>Your link is copied to your clipboard</p>
             </div>
+          </div>
+          <div className="video-container" >
+            <video className="my-video" ref={(ref)=> {this.myVideo = ref;}}></video>
+            <canvas className="peer-video" ref={(ref)=> {this.peerVideo = ref;}}></canvas>
           </div>
         </div>
       );

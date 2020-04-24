@@ -23,7 +23,7 @@ class RoomLoginForm extends React.Component {
                 [type]: e.currentTarget.value,
             });
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.currentUser === true) {
             this.props.history.push('/home');
         }

@@ -3,7 +3,7 @@
   position: sticky;
   width: 100%;
   top:0px;
-  
+  z-index: 5;
 }
 .nav-link {
   text-decoration: none;

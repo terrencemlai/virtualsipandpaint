@@ -515,8 +515,10 @@ canvas {
 
 .video-container {
     width: 500px;
+    left: 950px;
+    top: -800px;
     height: 380px;
-    border: 2px solid green;
+    /* border: 2px solid green; */
     position: relative;
     box-shadow: 1px 1px 11px lightgray;
 }
@@ -524,7 +526,7 @@ canvas {
 .my-video {
     width: 130px;
     position: absolute;
-    left: 10px;
+    left: 120px;
     bottom: 10px;
     border: 6px solid green;
     border-radius: 6px;
@@ -579,4 +581,17 @@ canvas {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* - */
+
+.invalid-room {
+    margin-top: 100px;
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Finger Paint";
+    font-size: 50px;
+    text-align: center;
 }
