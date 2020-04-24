@@ -30,9 +30,11 @@
 }
 
 .app-title{
+  display:flex;
   font-family: 'Finger Paint';
-  margin: 20px;
+  margin: 10px;
   color:#fffff0;
+  align-items: center;
 }
 
 .app-title:hover{

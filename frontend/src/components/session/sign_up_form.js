@@ -65,7 +65,7 @@ class SignupForm extends React.Component {
       <div className="form-container">
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">
-            <div className="form-title"><i className="fas fa-paint-brush"></i></div>
+            <div className="form-title"><img src="tipsylogo.png" alt="" height="100" width="100"></img></div>
             {this.renderErrors()}
             <br />
             <input

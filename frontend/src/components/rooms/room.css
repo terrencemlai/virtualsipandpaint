@@ -1,9 +1,39 @@
 canvas {
     background-color: white;
-    margin-left: 100px;
+    /* margin-left: 100px; */
     cursor: crosshair;
+    border-style:outset;
 }
-
+.paint{
+    width:600px;
+    height:600px;
+}
+.room-container{
+    display:flex;
+    margin:auto;
+    justify-content: space-evenly;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+.left-room{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+.right-room{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items:center;
+   
+}
+.button-container{
+    display:flex;
+    justify-content:space-between;
+}
+.button-container>div{
+    margin:10px;
+}
 /* color tools ---------------------------------------------------------- */
 .fa-eraser{
     font-size: 16px;
@@ -16,18 +46,18 @@ canvas {
 }
 .tool-options {
     margin: 20px;
-    margin-left: 100px;
+    /* margin-left: 10px; */
     display: flex;
     flex-direction: row;
     height:100%;
     width: 90%;
 }
 
-.color-options{
+/* .color-options{
     border: 3px;
     border-radius: 15px;
     border-style: outset;
-}
+} */
 .color>div{
     border-style: outset;
     width: 50px;
@@ -41,17 +71,18 @@ canvas {
     width:200px;
     display: flex;
     flex-wrap: wrap;
-    margin-top:4px;
+    /* margin-top:4px; */
     margin-left: 20px;
 }
 .size-options>div{
     border-radius:20px;
-    margin:4px;
+    margin:2px;
     border-style: outset;
 }
 .size-options>div:active{
     border-style: inset;
 }
+
 /* red----- */
 
 #red{
@@ -495,47 +526,38 @@ canvas {
     sans-serif;
 }
 .save-artwork-button {
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #fffff0;
     width: 200px;
     height: 50px;
     border: 1px solid gray;
-    background-color: #195216;
-
-    margin-left: 300px;
-    margin-top: 20px;
+    background-color: #1d6019;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-weight:700;
 }
 
 .save-artwork-button:hover{
     cursor: pointer;
+    background-color:#133a10;
+    color: #cdcdbf;
 }
 
-.saved-art-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    width: 200px;
-    height: 50px;
-    border: 1px solid gray;
-    background-color: green;
-}
-
-.saved-art-button:hover{
-    cursor: pointer;
-}
 
 canvas {
     border: 1px solid black;
 }
 
 .video-container {
-    width: 500px;
+    /* width: 500px;
     left: 950px;
-    top: -800px;
-    height: 380px;
+    top: -800px; */
+    height: 300px;
+    width: 400px;
     /* border: 2px solid green; */
     position: relative;
     box-shadow: 1px 1px 11px lightgray;
@@ -544,7 +566,7 @@ canvas {
 .my-video {
     width: 130px;
     position: absolute;
-    left: 120px;
+    left: 10px;
     bottom: 10px;
     border: 6px solid green;
     border-radius: 6px;
@@ -568,7 +590,7 @@ canvas {
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 10; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -580,11 +602,14 @@ canvas {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #fffff0;
+  font-family:"Finger Paint";
+  border-radius:10px;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  color:green;
 }
 
 /* The Close Button */
@@ -616,10 +641,14 @@ canvas {
 }
 
 
-
+.carousel-container{
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+}
 .carousel-image {
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
     object-fit: cover;
     border: 1px solid lightgray;
 }
@@ -647,4 +676,5 @@ canvas {
 
 .carousel-button:hover{
     cursor: pointer;
+    background-color:darkgrey;
 }
