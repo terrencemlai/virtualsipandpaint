@@ -20,6 +20,7 @@ class Room extends React.Component {
       lineCap: "round",
       hasMedia: false,
       otherUserId: null,
+      carouselImg: '01.jpg',
     };
 
     this.socket = io.connect(HOST);
@@ -27,7 +28,7 @@ class Room extends React.Component {
     this.changeColor = this.changeColor.bind(this);
     this.changeLineWidth = this.changeLineWidth.bind(this);
     this.handleSaveArtwork = this.handleSaveArtwork.bind(this);
-
+    this.handleCarouselClick = this.handleCarouselClick.bind(this);
     this.mediaHandler = new MediaHandler();
   }
 
@@ -204,6 +205,10 @@ class Room extends React.Component {
         modal.style.display = "none";
       }
     }
+  }
+  
+  handleCarouselClick(slide){
+    this.setState({ carouselImg: slide+'.jpg'})
   }
 
   render() {
