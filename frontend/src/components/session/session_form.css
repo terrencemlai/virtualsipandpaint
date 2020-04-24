@@ -6,6 +6,11 @@
   
 }
 
+.navlink {
+  color: white;
+  text-decoration: none;
+}
+
 .login-form, .signup-form{
   background-color: rgb(24, 99, 33);
   display: flex;

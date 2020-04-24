@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
   return {
     signedIn: state.session.isSignedIn,
     errors: state.errors.session,
-    navLink: <Link to="/login">Log In</Link>,
+    navLink: <Link className="navlink" to="/login">Log In</Link>,
   };
 };
 

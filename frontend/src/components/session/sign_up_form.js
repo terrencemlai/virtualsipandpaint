@@ -103,7 +103,7 @@ class SignupForm extends React.Component {
             <input className="form-button" type="submit" value="Sign Up" />
             <div className="redirect">
               Already signed up?
-              <p className="redirect-link">{this.props.navLink}</p>
+              <p className="redirect-link">&nbsp;{this.props.navLink}</p>
             </div>
           </div>
         </form>
