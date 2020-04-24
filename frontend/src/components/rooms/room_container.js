@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
    saveArtwork: (data) => dispatch(saveArtwork(data)),
-   getRoom: (roomId) => dispatch(getRoom(roomId)),
+   getRoom: (roomId) => dispatch(getRoom(roomId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Room);

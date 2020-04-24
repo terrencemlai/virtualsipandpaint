@@ -1,0 +1,17 @@
+h1 {
+    font-family: "Finger Paint";
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+    width: 275px;
+    padding-bottom: 9px;
+}
+
+.saved-art-info img {
+    border-radius: .5rem;
+    border: 5px dotted darkgreen;
+    width: 250px;
+    background-color: white
+}

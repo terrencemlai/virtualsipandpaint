@@ -9,6 +9,7 @@ import JoinFormContainer from './rooms/join_form_container';
 import HomePage from './home/home_page';
 // import SplashPage from './splash/splash';
 import RoomContainer from './rooms/room_container';
+import ArtContainer from './modal/art_container'
 const App = () => (
   <>
     <NavBarContainer />
@@ -18,7 +19,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/register" component={SignupFormContainer} />
 
-      <ProtectedRoute exact path="/home" component={HomePage} />
+      <ProtectedRoute exact path="/home" component={ArtContainer} />
       <Route path="/rooms/:id" component={RoomContainer}/>
     </Switch>
   </>
