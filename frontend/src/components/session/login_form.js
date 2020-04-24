@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
             <input className="form-button" type="submit" value="Log In" />
             <div className="redirect">
               Don't have an account?{" "}
-              <p className="redirect-link">{this.props.navLink}</p>
+              <p className="redirect-link">&nbsp;{this.props.navLink}</p>
             </div>
           </div>
         </form>

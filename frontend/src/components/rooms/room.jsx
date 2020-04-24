@@ -188,7 +188,7 @@ class Room extends React.Component {
 
   handleInvite() {
     const el = document.createElement('textarea');
-    el.value = window.location.origin + `/login#join?roomtoken=${this.props.room[0].room_token}`;
+    el.value = window.location.origin + `/#/join?roomtoken=${this.props.room[0].room_token}`;
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
