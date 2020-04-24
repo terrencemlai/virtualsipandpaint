@@ -363,6 +363,18 @@ class Room extends React.Component {
             <video className="my-video" ref={(ref)=> {this.myVideo = ref;}}></video>
             <canvas className="peer-video" ref={(ref)=> {this.peerVideo = ref;}}></canvas>
           </div>
+          
+          <div className="carousel-container">
+              <div className="carousel-image-wrapper">
+                <img className="carousel-image" src={this.state.carouselImg} alt="inspiration"/>
+              </div>
+              <div className="carousel-bar">
+                <div className="carousel-button" onClick={()=> this.handleCarouselClick('01')}>1</div>
+                <div className="carousel-button" onClick={()=> this.handleCarouselClick('02')}>2</div>
+                <div className="carousel-button" onClick={()=> this.handleCarouselClick('03')}>3</div>
+                <div className="carousel-button" onClick={()=> this.handleCarouselClick('04')}>4</div>
+              </div>
+         </div>
         </div>
       );
     }
