@@ -1,0 +1,26 @@
+/* .modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.modal-child {
+    position: relative;
+    width: 600px;
+}
+
+.modal-child > * {
+    border-radius: .5rem;
+}
+
+.modal-close {
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: .8;
+} */
