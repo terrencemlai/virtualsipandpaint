@@ -3,7 +3,7 @@ h1 {
     text-align: center;
 }
 
-li {
+.saved-art-info {
     display: inline-block;
     width: 275px;
     padding-bottom: 9px;
