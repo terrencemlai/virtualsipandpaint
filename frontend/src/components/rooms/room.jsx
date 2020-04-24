@@ -218,7 +218,8 @@ class Room extends React.Component {
       return <div className="invalid-room"><i className="far fa-frown-open"></i>&nbsp;Not a Valid Room&nbsp;<i className="far fa-sad-tear"></i></div>;
     } else {
       return (
-        <div className="room-container">
+        <div className="room-container"> 
+        <section className="left-room"> 
           <section className="tool-options">
             <section className="color-options">
               <div className="color">
@@ -330,6 +331,7 @@ class Room extends React.Component {
             </section>
           </section>
           <canvas
+          className="paint"
             ref="canvas"
             width="600px"
             height="600px"
@@ -342,26 +344,29 @@ class Room extends React.Component {
               this.draw(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
             }
           />
-          
-          <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
-          <div id="myModal-artwork-nosave" className="modal">
-            <div className="modal-content">
-              <span className="close">&times;</span>
-              <p>Please login to save the canvas</p>
-              <div><RoomLogInFormContainer /></div>
+        </section>
+        <section className="right-room">
+          <div className="button-container">
+            <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
+            <div id="myModal-artwork-nosave" className="modal">
+              <div className="modal-content">
+                <span className="close">&times;</span>
+                <p>Please login to save the canvas</p>
+                <div><RoomLogInFormContainer /></div>
+              </div>
             </div>
-          </div>
-          <div id="myModal-artwork-save" className="modal">
-            <div className="modal-content">
-              <span className="close">&times;</span>
-              <p>Your artwork is saved in your page</p>
+            <div id="myModal-artwork-save" className="modal">
+              <div className="modal-content">
+                <span className="close">&times;</span>
+                <p>Your artwork is saved in your page&nbsp;<i className="far fa-save"></i></p>
+              </div>
             </div>
-          </div>
-          <div className="save-artwork-button" onClick={() => this.handleInvite()}>Invite</div>
-          <div id="myModal-invite" className="modal">
-            <div className="modal-content">
-              <span className="close">&times;</span>
-              <p>Your link is copied to your clipboard</p>
+            <div className="save-artwork-button" onClick={() => this.handleInvite()}>Invite</div>
+            <div id="myModal-invite" className="modal">
+              <div className="modal-content">
+                <span className="close">&times;</span>
+                <p>Your link is copied to your clipboard&nbsp;<i className="fas fa-clipboard-check"></i></p>
+              </div>
             </div>
           </div>
           <div className="video-container" >
@@ -379,7 +384,8 @@ class Room extends React.Component {
                 <div className="carousel-button" onClick={()=> this.handleCarouselClick('03')}>3</div>
                 <div className="carousel-button" onClick={()=> this.handleCarouselClick('04')}>4</div>
               </div>
-         </div>
+          </div>
+         </section>
         </div>
       );
     }

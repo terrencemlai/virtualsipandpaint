@@ -79,14 +79,14 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       return(
       <Link className='nav-link' to={"/home"}>
-        <h1 className='app-title'>Tipsy Painter <i className="fas fa-paint-brush"></i></h1>
+        <h1 className='app-title'><img src="tipsylogo.png" alt="" height="80" width="80"></img>Tipsy Painter </h1>
       </Link>
       );
       
     } else {
       return(
-      <Link className='nav-link' to={"/splash"}>
-        <h1 className='app-title'>Tipsy Painter <i className="fas fa-paint-brush"></i></h1>
+      <Link className='nav-link' to={"/splash"}> 
+        <h1 className='app-title'><img src="tipsylogo.png" alt="" height="80" width="80"></img>Tipsy Painter </h1>
       </Link>
       );
     }
@@ -106,5 +106,5 @@ class NavBar extends React.Component {
     );
   }
 }
-
+//Tipsy Painter <i className="fas fa-paint-brush"></i>
 export default withRouter(NavBar);
