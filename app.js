@@ -39,8 +39,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 io.on("connection", (socket) => {
-  console.log("Connected to Socket!" + socket.id);
-
   socket.on("startDrawing", (room, data) => {
     socket.broadcast.to(room).emit("startDrawing", data);
   });
