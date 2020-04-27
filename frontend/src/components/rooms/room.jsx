@@ -218,7 +218,8 @@ class Room extends React.Component {
       return <div className="invalid-room"><i className="far fa-frown-open"></i>&nbsp;Not a Valid Room&nbsp;<i className="far fa-sad-tear"></i></div>;
     } else {
       return (
-        <div className="room-container"> 
+        <div className="room-container">
+          <section></section> 
         <section className="left-room"> 
           <section className="tool-options">
             <section className="color-options">
