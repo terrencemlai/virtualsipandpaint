@@ -10,13 +10,14 @@ class NavBar extends React.Component {
     this.getLinks = this.getLinks.bind(this);
     this.getNavLink = this.getNavLink.bind(this);
     this.handleCreateRoom = this.handleCreateRoom.bind(this);
+    this.handleDemoLogin = this.handleDemoLogin.bind(this);
   }
 
-  // logoutUser(e) {
-  //   e.preventDefault();
-  //   this.props.logout();
-  //   // this.props.history.push('/splash');
-  // }
+  handleDemoLogin(e) {
+    e.preventDefault();
+    const user = { email: "tipsypainter@email.com", password: "password" }
+    this.props.login(user);
+  };
 
   handleCreateRoom(){
     this.props.newRoom({userId: this.props.currentUser.id})
@@ -64,6 +65,9 @@ class NavBar extends React.Component {
           <div className='right-divide'>
             <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i> Join Room</Link>
           </div>
+          <button className="login" onClick={this.handleDemoLogin}>
+            Demo Log In
+         </button>
           <Link className="sign-up" to={"/register"}>
             Sign Up
          </Link>

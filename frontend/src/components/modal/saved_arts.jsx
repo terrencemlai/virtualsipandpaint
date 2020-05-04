@@ -1,5 +1,6 @@
 import React from 'react';
 import SavedArtItem from "./saved_art_item";
+import Footer from '../footer/footer';
 
 class SavedArts extends React.Component {
     constructor(props) {
@@ -34,12 +35,14 @@ class SavedArts extends React.Component {
             <>
                 <div className="art-container">
                     <h1 className="user-saved-header">{this.props.currentUser.username}! These are your saved artworks!</h1>
-                </div>
                 <main className="user-saved-arts">
                     <ul className="saved-arts-ul">
                         {savedArtLis}
                     </ul>
                 </main>
+                </div>
+                <Footer />
+
             </>
         );
     }

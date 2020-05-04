@@ -13,5 +13,9 @@ h1 {
     border-radius: .5rem;
     border: 5px dotted darkgreen;
     width: 250px;
-    background-color: white
+    background-color: white;
+}
+
+.art-container {
+    min-height: 100vh;
 }

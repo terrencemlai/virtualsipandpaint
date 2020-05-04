@@ -1,0 +1,38 @@
+
+.footer{
+  position: relative;
+  width: 100%;
+  bottom:0px;
+  z-index: 5;
+}
+
+.footer-beauty{
+  width: 100%;
+  padding: 20px 0;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1em;
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.075), 0 2px 8px rgba(0, 0, 0, 0.6);
+  background: rgb(3, 36, 0);
+  background: linear-gradient(90deg, rgb(10, 62, 18) 0%, rgb(8, 113, 17) 30%,rgb(82, 194, 95)50%, rgb(9, 121, 44) 70%,  rgb(10, 62, 18)100%);
+}
+
+.personal-link {
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    color:#fffff0;
+    padding: 16px;
+}
+
+.personal-links {
+    display: flex;
+        font-family: 'Finger Paint';
+
+}
+
+.personal-link:hover {
+    color:#bbbba6;
+}
+

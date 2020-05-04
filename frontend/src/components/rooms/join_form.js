@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import './join_form.css';
+import Footer from "../footer/footer";
 class JoinForm extends React.Component {
   constructor(props) {
     super(props);
@@ -47,6 +48,7 @@ class JoinForm extends React.Component {
 
   render() {
     return (
+      <>
       <div className="join-container">
         <form onSubmit={this.handleSubmit}>
           <div className="join-form">
@@ -64,6 +66,8 @@ class JoinForm extends React.Component {
           </div>
         </form>
       </div>
+      <Footer /> 
+      </>
     );
   }
 }

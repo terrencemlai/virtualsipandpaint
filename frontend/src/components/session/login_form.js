@@ -1,6 +1,7 @@
 import React from "react";
 import "./session_form.css";
 import { withRouter } from "react-router-dom";
+import Footer from "../footer/footer";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -59,6 +60,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
+      <>
       <div className="form-container">
         <form onSubmit={this.handleSubmit}>
           <div className="login-form">
@@ -89,6 +91,8 @@ class LoginForm extends React.Component {
           </div>
         </form>
       </div>
+      <Footer />
+      </>
     );
   }
 }
