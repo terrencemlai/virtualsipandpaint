@@ -1,5 +1,6 @@
 import React from 'react';
 import './splash.css';
+import Footer from '../footer/footer';
 
 class SplashPage extends React.Component {
   render() {
@@ -44,6 +45,7 @@ class SplashPage extends React.Component {
               </div>
           </div>
         </div>
+        <Footer />
       </div>
     )
   }

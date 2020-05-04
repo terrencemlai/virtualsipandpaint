@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import "./room.css";
 import MediaHandler from '../../MediaHandler';
 import RoomLogInFormContainer from './room_login_container';
+import Footer from "../footer/footer";
 
 const HOST =
   process.env.NODE_ENV === "production"
@@ -218,6 +219,7 @@ class Room extends React.Component {
       return <div className="invalid-room"><i className="far fa-frown-open"></i>&nbsp;Not a Valid Room&nbsp;<i className="far fa-sad-tear"></i></div>;
     } else {
       return (
+        <>
         <div className="room-container">
           <section></section> 
         <section className="left-room"> 
@@ -388,6 +390,8 @@ class Room extends React.Component {
           </div>
          </section>
         </div>
+        <Footer />
+         </>
       );
     }
   }

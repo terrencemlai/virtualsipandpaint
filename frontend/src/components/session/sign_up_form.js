@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import Footer from "../footer/footer";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class SignupForm extends React.Component {
 
   render() {
     return (
+      <>
       <div className="form-container">
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">
@@ -108,6 +110,8 @@ class SignupForm extends React.Component {
           </div>
         </form>
       </div>
+      <Footer />
+      </>
     );
   }
 }
