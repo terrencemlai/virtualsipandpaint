@@ -4,8 +4,6 @@
 
 Tipsy Painter is a collaborative drawing website where you can draw with freinds and get tipsy together.
 
-## Live Link
-
 [Live Link](tipsypainter.herokuapp.com)
 
 ## Technologies
