@@ -6,7 +6,7 @@ const SavedArtItem = ({ savedArt }) => {
 
     return ( 
         <li className="saved-art-info">
-            <img src={savedArt.data_url} />
+            <img src={savedArt.data_url} alt="artwork"/>
         </li>
     );
 };

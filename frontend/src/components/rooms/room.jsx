@@ -1,9 +1,10 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import io from "socket.io-client";
 import "./room.css";
 import MediaHandler from '../../MediaHandler';
 import RoomLogInFormContainer from './room_login_container';
+import Webcam from '../webcam/webcam';
 import Footer from "../footer/footer";
 
 const HOST =
@@ -30,43 +31,18 @@ class Room extends React.Component {
     this.changeLineWidth = this.changeLineWidth.bind(this);
     this.handleSaveArtwork = this.handleSaveArtwork.bind(this);
     this.handleCarouselClick = this.handleCarouselClick.bind(this);
+    this.sendVideo = null;
     this.mediaHandler = new MediaHandler();
   }
-
+  
   componentDidMount() {
     this.props.getRoom(this.props.roomId);
+    
     this.socket.emit("create", this.props.match.params.id)
 
+
     const that = this;
-
-    this.mediaHandler.getPermissions().then((stream) => {
-      this.setState({ hasMedia: true});
-      const myVidCanvas = document.createElement('canvas');
-      const myVidContext = myVidCanvas.getContext('2d');
-
-      try {
-        this.myVideo.srcObject = stream;
-      } catch(e) {
-        this.myVideo.src = URL.createObjectURL(stream);
-      }
-
-      this.myVideo.play();
-
-      function createMyVidCanvas() {
-        myVidContext.drawImage(that.myVideo, 0,0, myVidCanvas.width, myVidCanvas.height);
-        that.socket.emit("video-stream", (that.props.match.params.id), {
-          dataUrl: myVidCanvas.toDataURL(),
-        });      
-      }
-
-      setInterval(createMyVidCanvas, 300);
-    })
-
     
-    this.socket.on("video-stream", function(data) {
-      that.renderPeerVideo(data.dataUrl);
-    })
-
     this.socket.on("startDrawing", function (data) {
       that.receiveStartDrawing(data.x, data.y);
     });
@@ -82,14 +58,20 @@ class Room extends React.Component {
     });
   }
 
-  renderPeerVideo(dataUrl){
-    const img = new Image();
-    img.onload = () => {
-      const peerContext = this.peerVideo.getContext('2d');
-      peerContext.drawImage(img, 0,0);
-    }
-    img.src = dataUrl;
+  componentWillUnmount() {
+    clearInterval(this.sendVideo);
+    this.sendVideo = null;
   }
+
+
+  // renderPeerVideo(dataUrl){
+  //   const img = new Image();
+  //   img.onload = () => {
+  //     const peerContext = this.peerVideo.getContext('2d');
+  //     peerContext.drawImage(img, 0,0);
+  //   }
+  //   img.src = dataUrl;
+  // }
 
   getContext() {
     return this.refs.canvas.getContext("2d");
@@ -216,7 +198,12 @@ class Room extends React.Component {
     
 
     if (Object.values(this.props.room).length === 0) {
-      return <div className="invalid-room"><i className="far fa-frown-open"></i>&nbsp;Not a Valid Room&nbsp;<i className="far fa-sad-tear"></i></div>;
+      return (
+        <div className="invalid-room">
+          Hmmm, that's not a valid room.
+          <Link className="join-room" to={"/join"}> <i className="fas fa-door-open"></i> Please Try Again</Link>
+        </div>
+        );
     } else {
       return (
         <>
@@ -372,10 +359,8 @@ class Room extends React.Component {
               </div>
             </div>
           </div>
-          <div className="video-container" >
-            <video className="my-video" ref={(ref)=> {this.myVideo = ref;}}></video>
-            <canvas className="peer-video" ref={(ref)=> {this.peerVideo = ref;}}></canvas>
-          </div>
+
+          <Webcam/>
           
           <div className="carousel-container">
               <div className="carousel-image-wrapper">

@@ -5,8 +5,6 @@ import NavBarContainer from './nav_bar/nav_bar_container';
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/sign_up_form_container";
 import JoinFormContainer from './rooms/join_form_container';
-// import HomePage from './home/home_page';
-import HomePage from './home/home_page';
 import SplashPage from './splash/splash';
 import RoomContainer from './rooms/room_container';
 import ArtContainer from './modal/art_container'

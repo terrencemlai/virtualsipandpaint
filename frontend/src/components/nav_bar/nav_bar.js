@@ -6,7 +6,6 @@ import "./nav_bar.css";
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    // this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
     this.getNavLink = this.getNavLink.bind(this);
     this.handleCreateRoom = this.handleCreateRoom.bind(this);

@@ -1,4 +1,4 @@
-import {fetchArtworks, fetchArtwork, createArtwork} from "../util/artwork_util";
+import {fetchArtworks, createArtwork} from "../util/artwork_util";
 
 export const RECEIVE_ARTWORKS = "RECEIVE_ARTWORKS";
 export const RECEIVE_ARTWORK = "RECEIVE_ARTWORK";

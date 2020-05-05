@@ -2,7 +2,6 @@ import {fetchRoomByToken, fetchRoomById, createRoom} from "../util/room_util";
 
 export const RECEIVE_ROOM = "RECEIVE_ROOM";
 export const RECEIVE_ROOM_ERRORS = "RECEIVE_ROOM_ERRORS";
-// export const CREATE_NEW_ROOM = "CREATE_NEW_ROOM";
 
 export const receiveRoom = room => ({
   type: RECEIVE_ROOM,
@@ -27,7 +26,9 @@ export const getRoom = roomId => dispatch => {
   return(
     fetchRoomById(roomId)
       .then(res => dispatch(receiveRoom(res)))
-      .catch(err => dispatch(receiveRoomErrors(err.response.data)))
+      .catch(err => {
+        dispatch(receiveRoomErrors(err.response.data))
+      })
   );
 };
 
