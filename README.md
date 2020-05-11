@@ -4,25 +4,129 @@
 
 Tipsy Painter is a collaborative drawing website where you can draw with friends and get tipsy together.
 
-[Live Link](http://tipsypainter.herokuapp.com/#/)
+## [Live Link](http://tipsypainter.herokuapp.com/#/)
 
 ## Technologies
+
+Tipsy Painter was built using:
 
 * Front End
      * React
      * CSS/HTML
 
 * Back End
-     * MongoDB
-     * Express
-     * Node.js
-     * Web Socket API
+     * MongoDB (mongoose 5.9.9)
+     * Express 4.17.1
+     * Node.js 10.13.0
+     * Web Socket API (socket.io 2.3.0)
+     
+## Background and Overview
+
+Tipsy Painter takes the popular format of sip-and-paint parties to the digital canvas. Multiple users can paint together on the same canvas remotely.
 
 ## Features
 
 * User authentication
+
+Tipsy Painter has backend user auth and persistent user state. 
+
+* Responsive canvas that updates for more than one user.
+
+Implemented with socket.io and created functions for sending out and receiving the canvas data inside of canvas components so that multiple users can draw together on the same time.
+
+For sending out the canvas data,
+
+```javascipt
+ this.socket.emit("draw", this.props.match.params.id, {
+      x: x,
+      y: y,
+      color: this.state.color,
+      lineWidth: this.state.lineWidth,
+      lineCap: this.state.lineCap,
+    });
+```
+
+For receiving the canvas data,
+```javascript
+receiveDraw(x, y, color, lineWidth, lineCap) {
+    const ctx = this.getContext();
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = lineCap;
+  }
+```
+
 * Real-time video chat rendering
-* Responsive canvas that updates for more than one user
+
+Utilizes socket.io and rendered video chat.
+
+```javascript 
+ componentDidMount() {
+    
+    this.socket.emit("create", this.props.match.params.id)
+
+
+    const that = this;
+
+    if (this.myVideo !== undefined) {
+      this.myVideo = document.createElement('video');
+    }
+
+
+      this.mediaHandler.getPermissions().then((stream) => {
+        this.setState({ hasMedia: true});
+        const myVidCanvas = document.createElement('canvas');
+        const myVidContext = myVidCanvas.getContext('2d');
+
+        try {
+          this.myVideo.srcObject = stream;
+        } catch(e) {
+          this.myVideo.src = URL.createObjectURL(stream);
+        }
+
+        this.myVideo.play();
+
+        function createMyVidCanvas() {
+          myVidContext.drawImage(that.myVideo, 0,0, myVidCanvas.width, myVidCanvas.height);
+          that.socket.emit("video-stream", (that.props.match.params.id), {
+            dataUrl: myVidCanvas.toDataURL(),
+          });      
+        }
+
+        this.sendVideo = setInterval(createMyVidCanvas, 300);
+      })
+
+      
+      this.socket.on("video-stream", function(data) {
+        that.renderPeerVideo(data.dataUrl);
+      })
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.sendVideo);
+    this.sendVideo = null;
+  }
+
+  renderPeerVideo(dataUrl){
+    const img = new Image();
+    img.onload = () => {
+      const peerContext = this.peerVideo.getContext('2d');
+      peerContext.drawImage(img, 0,0);
+    }
+    img.src = dataUrl;
+  }
+
+  render() {
+      return (
+          <div className="video-container" >
+            <video className="my-video" ref={(ref)=> {this.myVideo = ref;}}></video>
+            <canvas className="peer-video" ref={(ref)=> {this.peerVideo = ref;}}></canvas>
+          </div>
+      );
+    }
+```
 * Create and Join Art Rooms
 * Save Artworks
 * Customized greeting in Nav Bar for each User
