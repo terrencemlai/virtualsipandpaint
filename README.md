@@ -24,6 +24,8 @@ Tipsy Painter was built using:
 
 Tipsy Painter takes the popular format of sip-and-paint parties to the digital canvas. Multiple users can paint together on the same canvas remotely.
 
+![tipsypainter](frontend/public/p2.png)
+
 ## Features
 
 * User authentication
