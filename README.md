@@ -62,7 +62,7 @@ receiveDraw(x, y, color, lineWidth, lineCap) {
 
 * Real-time video chat rendering
 
-Utilizes socket.io and rendered video chat.
+Utilized socket.io and rendered video chat.
 
 ```javascript 
  componentDidMount() {
@@ -130,5 +130,52 @@ Utilizes socket.io and rendered video chat.
     }
 ```
 * Create and Join Art Rooms
+
+Once user hits ```invite button``` in a room, it auto-generates URL and it's already copied to a clipboard. 
+
+![tipsypainter](frontend/public/p3.png)
+
+```javascript
+  handleInvite() {
+    const el = document.createElement('textarea');
+    el.value = window.location.origin + `/#/join?roomtoken=${this.props.room[0].room_token}`;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    const modal = document.getElementById("myModal-invite");
+    const span = document.getElementsByClassName("close")[2];
+    modal.style.display = "block";
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+```
+
+When a user pastes URL and it auto-fills ```room token```
+
+![tipsypainter](frontend/public/p4.png)
+
+```javascript 
+  componentDidMount() {
+    let queryParams = new URLSearchParams(this.props.location.search)
+    let roomtoken = queryParams.get("roomtoken")
+    if (roomtoken) {
+      return this.setState({ room_token: roomtoken })
+    }
+  }
+ ```
+
 * Save Artworks
-* Customized greeting in Nav Bar for each User
+
+Users can save their artworks on their own gallary page. 
+
+![tipsypainter](frontend/public/p5.png)
+
+
+
