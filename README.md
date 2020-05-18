@@ -131,7 +131,7 @@ Utilized socket.io and rendered video chat.
 ```
 * Create and Join Art Rooms
 
-Once user hits ```invite button``` in a room, it auto-generates URL and it's already copied to a clipboard. 
+Once user clicks ```invite button``` in a room, it auto-generates URL and it's already copied to a clipboard. 
 
 ![tipsypainter](frontend/public/p3.png)
 
@@ -157,7 +157,7 @@ Once user hits ```invite button``` in a room, it auto-generates URL and it's alr
   }
 ```
 
-When a user pastes URL and it auto-fills ```room token```
+When a user pastes URL, it auto-fills ```room token```
 
 ![tipsypainter](frontend/public/p4.png)
 
