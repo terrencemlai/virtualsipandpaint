@@ -74,17 +74,9 @@ Inside of ```handleInvite```, it will look for a DOM document objects and copies
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    const modal = document.getElementById("myModal-invite");
-    const span = document.getElementsByClassName("close")[2];
-    modal.style.display = "block";
-    span.onclick = function () {
-      modal.style.display = "none";
+    ... 
     }
-    window.onclick = function (event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    }
+   ....
   }
 ```
 
