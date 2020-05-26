@@ -60,106 +60,8 @@ receiveDraw(x, y, color, lineWidth, lineCap) {
   }
 ```
 
-* Real-time video chat rendering
-
-Utilized socket.io and rendered video chat.
-
-```javascript 
- componentDidMount() {
-    
-    this.socket.emit("create", this.props.match.params.id)
-
-
-    const that = this;
-
-    if (this.myVideo !== undefined) {
-      this.myVideo = document.createElement('video');
-    }
-
-
-      this.mediaHandler.getPermissions().then((stream) => {
-        this.setState({ hasMedia: true});
-        const myVidCanvas = document.createElement('canvas');
-        const myVidContext = myVidCanvas.getContext('2d');
-
-        try {
-          this.myVideo.srcObject = stream;
-        } catch(e) {
-          this.myVideo.src = URL.createObjectURL(stream);
-        }
-
-        this.myVideo.play();
-
-        function createMyVidCanvas() {
-          myVidContext.drawImage(that.myVideo, 0,0, myVidCanvas.width, myVidCanvas.height);
-          that.socket.emit("video-stream", (that.props.match.params.id), {
-            dataUrl: myVidCanvas.toDataURL(),
-          });      
-        }
-
-        this.sendVideo = setInterval(createMyVidCanvas, 300);
-      })
-
-      
-      this.socket.on("video-stream", function(data) {
-        that.renderPeerVideo(data.dataUrl);
-      })
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.sendVideo);
-    this.sendVideo = null;
-  }
-
-  renderPeerVideo(dataUrl){
-    const img = new Image();
-    img.onload = () => {
-      const peerContext = this.peerVideo.getContext('2d');
-      peerContext.drawImage(img, 0,0);
-    }
-    img.src = dataUrl;
-  }
-
-  render() {
-      return (
-          <div className="video-container" >
-            <video className="my-video" ref={(ref)=> {this.myVideo = ref;}}></video>
-            <canvas className="peer-video" ref={(ref)=> {this.peerVideo = ref;}}></canvas>
-          </div>
-      );
-    }
-```
-* Create and Join Art Rooms
-
-Once user clicks ```invite button``` in a room, it auto-generates URL and it's already copied to a clipboard. 
-
-![tipsypainter](frontend/public/p3.png)
-
-```javascript
-  handleInvite() {
-    const el = document.createElement('textarea');
-    el.value = window.location.origin + `/#/join?roomtoken=${this.props.room[0].room_token}`;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    const modal = document.getElementById("myModal-invite");
-    const span = document.getElementsByClassName("close")[2];
-    modal.style.display = "block";
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
-    window.onclick = function (event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    }
-  }
-```
-
-When a user pastes URL, it auto-fills ```room token```
-
-![tipsypainter](frontend/public/p4.png)
+When a user pastes URL, it auto-fills ```room token```. 
+After the first render occurs on the client side, one of React Lifecycles Methods, ```componentDidMount``` will take care of taking out the room token out of URL's query params, and setting the room token as a state in that component. 
 
 ```javascript 
   componentDidMount() {
@@ -170,10 +72,53 @@ When a user pastes URL, it auto-fills ```room token```
     }
   }
  ```
+ 
+ ![tipsypainter](frontend/public/p4.png)
 
 * Save Artworks
 
-Users can save their artworks on their own gallary page. 
+Once a user clicks ```save artwork``` button, they can save their artworks on their own gallary page. The button has an onClick listener that fires the handleSaveArtWork function, which checks the current user ID, converts the canvas to a data URL and saves the artwork to the curret user's gallery.
+
+```javascript 
+            <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
+```
+
+```javascript 
+
+  handleSaveArtwork() {
+    if (typeof this.props.currentUser.id !== "undefined") {
+      const dataUrl = this.refs.canvas.toDataURL();
+      this.props.saveArtwork({
+        userId: this.props.currentUser.id,
+        dataUrl: dataUrl,
+      })
+      const modal = document.getElementById("myModal-artwork-save");
+      const span = document.getElementsByClassName("close")[1];
+      modal.style.display = "block";
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      }
+    } else {
+      const modal = document.getElementById("myModal-artwork-nosave");
+      const span = document.getElementsByClassName("close")[0];
+      modal.style.display = "block";
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      }
+    }
+  }
+ ```
+
 
 ![tipsypainter](frontend/public/p5.png)
 
