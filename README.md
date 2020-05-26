@@ -63,8 +63,8 @@ receiveDraw(x, y, color, lineWidth, lineCap) {
 
 * Create and Join Art Rooms
 
-Once a user clicks ```invite button``` in a room, it auto-generates URL and it's already copied to a clipboard. 
-
+Once a user clicks ```invite button``` in a room, it fires off a function called ```handleInvite``` .
+Inside of ```handleInvite```, it will look for a DOM document objects and copies URL to the clipboard on the client side. 
 
 ```javascript
   handleInvite() {
@@ -125,30 +125,7 @@ Once a user clicks ```save artwork``` button, they can save their artworks on th
         userId: this.props.currentUser.id,
         dataUrl: dataUrl,
       })
-      const modal = document.getElementById("myModal-artwork-save");
-      const span = document.getElementsByClassName("close")[1];
-      modal.style.display = "block";
-      span.onclick = function () {
-        modal.style.display = "none";
-      }
-      window.onclick = function (event) {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      }
-    } else {
-      const modal = document.getElementById("myModal-artwork-nosave");
-      const span = document.getElementsByClassName("close")[0];
-      modal.style.display = "block";
-      span.onclick = function () {
-        modal.style.display = "none";
-      }
-      window.onclick = function (event) {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      }
-    }
+      ... 
   }
  ```
 
