@@ -60,7 +60,40 @@ receiveDraw(x, y, color, lineWidth, lineCap) {
   }
 ```
 
-When a user pastes URL, it auto-fills ```room token```. 
+
+* Create and Join Art Rooms
+
+Once a user clicks ```invite button``` in a room, it auto-generates URL and it's already copied to a clipboard. 
+
+
+```javascript
+  handleInvite() {
+    const el = document.createElement('textarea');
+    el.value = window.location.origin + `/#/join?roomtoken=${this.props.room[0].room_token}`;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    const modal = document.getElementById("myModal-invite");
+    const span = document.getElementsByClassName("close")[2];
+    modal.style.display = "block";
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+```
+
+ ![tipsypainter](frontend/public/p3.png)
+
+
+* Room Token
+
+When a user pastes sharable URL, it auto-fills ```room token```. 
 After the first render occurs on the client side, one of React Lifecycles Methods, ```componentDidMount``` will take care of taking out the room token out of URL's query params, and setting the room token as a state in that component. 
 
 ```javascript 
@@ -80,7 +113,7 @@ After the first render occurs on the client side, one of React Lifecycles Method
 Once a user clicks ```save artwork``` button, they can save their artworks on their own gallary page. The button has an onClick listener that fires the handleSaveArtWork function, which checks the current user ID, converts the canvas to a data URL and saves the artwork to the curret user's gallery.
 
 ```javascript 
-            <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
+  <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
 ```
 
 ```javascript 
