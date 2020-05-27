@@ -34,9 +34,9 @@ Tipsy Painter has backend user auth and persistent user state.
 
 * Responsive canvas that updates for more than one user.
 
-Implemented with socket.io and created functions for sending out and receiving the canvas data inside of canvas components so that multiple users can draw together on the same time.
+Implemented with socket.io and created functions for sending out and receiving the canvas data inside of canvas components so that multiple users can draw together at the same time.
 
-For sending out the canvas data,
+For sending out the canvas data;
 
 ```javascript
  this.socket.emit("draw", this.props.match.params.id, {
@@ -48,7 +48,7 @@ For sending out the canvas data,
     });
 ```
 
-For receiving the canvas data,
+For receiving the canvas data;
 ```javascript
 receiveDraw(x, y, color, lineWidth, lineCap) {
     const ctx = this.getContext();
@@ -64,7 +64,7 @@ receiveDraw(x, y, color, lineWidth, lineCap) {
 * Create and Join Art Rooms
 
 Once a user clicks ```invite button``` in a room, it fires off a function called ```handleInvite``` .
-Inside of ```handleInvite```, it will look for a DOM document objects and copies URL to the clipboard on the client side. 
+Inside of ```handleInvite```, it will look for a DOM document objects and copy URL to the clipboard on the client side. 
 
 ```javascript
   handleInvite() {
@@ -86,7 +86,7 @@ Inside of ```handleInvite```, it will look for a DOM document objects and copies
 * Room Token
 
 When a user pastes sharable URL, it auto-fills ```room token```. 
-After the first render occurs on the client side, one of React Lifecycles Methods, ```componentDidMount``` will take care of taking out the room token out of URL's query params, and setting the room token as a state in that component. 
+After the first render occurs on the client side, one of React Lifecycle Methods, ```componentDidMount``` will handle taking out the room token out of URL's query params, and setting the room token as a state in that component. 
 
 ```javascript 
   componentDidMount() {
@@ -102,7 +102,7 @@ After the first render occurs on the client side, one of React Lifecycles Method
 
 * Save Artworks
 
-Once a user clicks ```save artwork``` button, they can save their artworks on their own gallary page. The button has an onClick listener that fires the handleSaveArtWork function, which checks the current user ID, converts the canvas to a data URL and saves the artwork to the curret user's gallery.
+Once a user clicks ```save artwork``` button, they can save their artwork on their own gallery page. The button has an onClick listener that fires the handleSaveArtWork function, which checks the current user ID, converts the canvas to a data URL and saves the artwork to the curret user's gallery.
 
 ```javascript 
   <div className="save-artwork-button" onClick={() => this.handleSaveArtwork()}>Save Artwork</div>
