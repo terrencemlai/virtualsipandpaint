@@ -38,7 +38,7 @@ Implemented with socket.io and created functions for sending out and receiving t
 
 For sending out the canvas data,
 
-```javascipt
+```javascript
  this.socket.emit("draw", this.props.match.params.id, {
       x: x,
       y: y,
